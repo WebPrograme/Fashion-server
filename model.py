@@ -40,10 +40,15 @@ def process(url, headers, pageNumber):
 
 def extract_img_features(url, headers, model):
     try:
-        if type(headers) == str:
-            headers = ast.literal_eval(headers)
-        image_reader = tf.image.decode_image(
-            requests.get(url, headers=headers).content, channels=3)
+        if headers != '':
+            print(url)
+            if type(headers) == str:
+                headers = ast.literal_eval(headers)
+            image_reader = tf.image.decode_image(
+                requests.get(url, headers=headers).content, channels=3)
+        else:
+            image_reader = tf.image.decode_image(
+                requests.get(url).content, channels=3)
         image_reader = tf.image.resize_with_pad(image_reader, 224, 224)
         img = tf.cast(image_reader, tf.float32)
         img_array = np.array(img)
