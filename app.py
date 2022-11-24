@@ -12,10 +12,14 @@ from flask import Flask, flash, redirect, render_template, request, send_from_di
 from flask_cors import CORS, cross_origin
 from PIL import Image
 from rich.console import Console
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 import model
 
 app = Flask('Fashion recommender', template_folder='template')
+app.wsgi_app = ProxyFix(
+    app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+)
 dev_status = False
 console = Console()
 error_console = Console(stderr=True, style="bold red")
