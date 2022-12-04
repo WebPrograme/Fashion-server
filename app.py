@@ -1415,15 +1415,14 @@ def predict():
             terminal.log(f'Extracting uploaded image')
             try:
                 userID = request.form['UserID']
-                file = request.files['file']
-                file.save(f'uploads\\{userID}.png')         
+                file = request.files['file'].read()
                 try:
                     a = request.form['gender-switch']
                     gender = 'MEN'
                 except:
                     gender = 'WOMEN'
                 terminal.log(f'Programm started with given input')
-                results = model.process(gender,userID, 1)
+                results = model.process_file(file, 1)
                 terminal.log(f'10 results found with input type: IMAGE and with gender: {gender.upper()}')
                 dev_mode(f'Results: {results}')
                 uploaded_img_path = userID + '.png'

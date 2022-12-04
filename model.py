@@ -38,6 +38,32 @@ def process(url, headers, pageNumber):
         
     return results
 
+def process_file(file, pageNumber):
+    global pick_store, product_status
+    img_files_list = pickle.loads(requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/img_filesWOMEN3.pkl').content)
+    features_list = pickle.loads(requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/image_features_embeddingWOMEN3.pkl').content)
+    features = extract_img_features_from_file(file, model)
+    img_distence, img_indicess = recommendd(features, features_list)
+    results = []
+    
+    for result in img_indicess[0][(pageNumber*10)-10:pageNumber*10]:
+        results.append(img_files_list[result])
+        
+    return results
+
+def extract_img_features_from_file(file, model):
+    img = Image.open(io.BytesIO(file))
+    img = tf.image.resize(img, (224, 224))
+    img_array = np.array(img)
+    img_array.setflags(write=1)
+    expand_img = np.resize(img_array, (1, 224, 224, 3))
+    preprocessed_img = preprocess_input(expand_img)
+    result_to_resnet = model.predict(preprocessed_img)
+    flatten_result = result_to_resnet.flatten()
+    # normalizing
+    result_normlized = flatten_result / norm(flatten_result)
+    return result_normlized
+
 def extract_img_features(url, headers, model):
     try:
         if headers != '':
