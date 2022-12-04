@@ -4,6 +4,8 @@ from tensorflow.keras.layers import GlobalMaxPooling2D
 from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 from sklearn.neighbors import NearestNeighbors
 from sklearn import metrics
+from PIL import Image
+import io
 import os
 import tensorflow as tf
 
