@@ -27,7 +27,7 @@ function recommend(event, index) {
     } else {
         document.getElementById('recommended_results_' + index +'_arrow').classList.toggle('accordion-header-arrow-flip');
         var request = new XMLHttpRequest();
-        request.open("GET", "/recommend?id=" + UserID + '&number=' + document.getElementById('recommendBtn' + index).value, true);
+        request.open("GET", "/recommend?number=" + document.getElementById('recommendBtn' + index).value, true);
         request.send();
         request.onreadystatechange = function () {
             data = JSON.parse(request.response)['result'];
@@ -97,7 +97,7 @@ function recommendSmall(event, index) {
         document.getElementById('recommended_small_results_' + index +'_arrow').classList.toggle('accordion-header-arrow-flip');
         document.getElementById('recommended_small_results_' + index +'_arrow').classList.add('dummy-class');
         var request = new XMLHttpRequest();
-        request.open("GET", "/recommend?id=" + UserID + '&number=' + document.getElementById('recommendBtn' + index).value, true);
+        request.open("GET", "/recommend?number=" + document.getElementById('recommendBtn' + index).value, true);
         request.send();
         request.onreadystatechange = function () {
             data = JSON.parse(request.response)['result'];

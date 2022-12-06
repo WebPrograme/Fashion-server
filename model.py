@@ -69,14 +69,23 @@ def extract_img_features_from_file(file, model):
 def extract_img_features(url, headers, model):
     try:
         if headers != '':
-            print(url)
             if type(headers) == str:
                 headers = ast.literal_eval(headers)
             image_reader = tf.image.decode_image(
                 requests.get(url, headers=headers).content, channels=3)
         else:
-            image_reader = tf.image.decode_image(
-                requests.get(url).content, channels=3)
+            file = requests.get(url).content
+            img = Image.open(io.BytesIO(file))
+            img = tf.image.resize(img, (224, 224))
+            img_array = np.array(img)
+            img_array.setflags(write=1)
+            expand_img = np.resize(img_array, (1, 224, 224, 3))
+            preprocessed_img = preprocess_input(expand_img)
+            result_to_resnet = model.predict(preprocessed_img)
+            flatten_result = result_to_resnet.flatten()
+            # normalizing
+            result_normlized = flatten_result / norm(flatten_result)
+            return result_normlized
         image_reader = tf.image.resize_with_pad(image_reader, 224, 224)
         img = tf.cast(image_reader, tf.float32)
         img_array = np.array(img)

@@ -278,25 +278,11 @@ class terminal():
     def log(message):
         try:
             console.log(message)
-            seconds = datetime.datetime.now().second
-            if seconds < 10:
-                seconds = '0' + str(seconds)
-                
-            log_file = open('log.txt', 'a')
-            log_file.write(f'[{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{seconds}] {message}\n')
-            log_file.close()
         except Exception as e:
             terminal.error(e)
         
     def error(message):
         error_console.log(message)
-        seconds = datetime.datetime.now().second
-        if seconds < 10:
-            seconds = '0' + str(seconds)
-            
-        log_file = open('log.txt', 'a')
-        log_file.write(f'[{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{seconds}] [ERROR] {message}\n')
-        log_file.close()
 
 class extract_img():
     def __init__(self, userID, headers):
@@ -703,7 +689,7 @@ class extract_img():
             return imgSrc, headers
                                       
 class get_model_image():
-    def hm(number, count, userID):
+    def hm(number):
         page = requests.get(f"https://www2.hm.com/nl_be/productpage.{number}.html", headers=headers).content
         soup = BeautifulSoup(page, 'html.parser')
 
@@ -714,14 +700,14 @@ class get_model_image():
         except:
             pass
 
-    def mango(number, count, userID):
+    def mango(number):
         img_data = requests.get(f"https://st.mngbcn.com/rcs/pics/static/T3/fotos/S20/{number[:-2]}_{number[-2:]}.jpg", headers=headers)
         if img_data.status_code != 200:
             img_data = requests.get(f"https://st.mngbcn.com/rcs/pics/static/T3/fotos/S20/{number[:-2]}_{number[-2:]}_D1.jpg", headers=headers)
             return f"https://st.mngbcn.com/rcs/pics/static/T3/fotos/S20/{number[:-2]}_{number[-2:]}_D1.jpg"
         return f"https://st.mngbcn.com/rcs/pics/static/T3/fotos/S20/{number[:-2]}_{number[-2:]}.jpg"
 
-    def newyorker(number, count, userID):
+    def newyorker(number):
         data = requests.get(f'https://api.newyorker.de/csp/products/public/product/{number}?country=nl', headers=headers).content
         data = json.loads(data)
 
@@ -734,7 +720,7 @@ class get_model_image():
             if imageFile['type'] == 'OUTFIT_IMAGE' and imageFile['angle'] == 'FRONT':
                 return f'https://nyblobstoreprod.blob.core.windows.net/product-images-public/{imageFile["key"]}'
 
-    def zara(number, count, userID):
+    def zara(number):
         productId = number
         try:
             data = requests.get(f'https://www.zara.com/be/nl/-p0{productId}.html', headers=headers).content
@@ -751,7 +737,7 @@ class get_model_image():
             print(e)
             pass
 
-    def pullbear(number, count, userID):
+    def pullbear(number):
         possible_urls = [f"https://static.pullandbear.net/2/photos//2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?",
                          f"https://static.pullandbear.net/2/photos//2022/V/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?",
                          f"https://static.pullandbear.net/2/photos//2021/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2021/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?",
@@ -762,10 +748,10 @@ class get_model_image():
             if req.status_code == 200:
                 return url 
 
-    def stradivarius(number, count, userID):
+    def stradivarius(number):
         return f"https://static.e-stradivarius.net/5/photos3/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?"
         
-    def bershka(number, count, userID):
+    def bershka(number):
         possible_urls = [f"https://static.bershka.net/4/photos2/2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?", f"https://static.bershka.net/4/photos2/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?",
                          f"https://static.bershka.net/4/photos2/2022/V/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?", f"https://static.bershka.net/4/photos2/2022/I/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?",
                          f"https://static.bershka.net/4/photos2/2021/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?", f"https://static.bershka.net/4/photos2/2021/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?",
@@ -776,16 +762,16 @@ class get_model_image():
             if req.status_code == 200:
                 return url
             
-    def we(number, count, userID):
+    def we(number):
         return f"https://www.wefashion.be/dw/image/v2/AANH_PRD/on/demandware.static/-/Sites-master-catalog/default/images/hi-res/{number}_2.jpg"
 
-    def weekday(number, count, userID):
+    def weekday(number):
         product_data = requests.get(f"https://www.weekday.com/en_eur/search.html?q={number}", headers=headers).content
-        
-        soup = BeautifulSoup(product_data, 'html.parser')
-        product_url = soup.find_all('a', {'class': 'search-link-track'})[0]['href']
+        print(product_data)
         
         try:
+            soup = BeautifulSoup(product_data, 'html.parser')
+            product_url = soup.find_all('a', {'class': 'search-link-track'})[0]['href']
             product_data = requests.get(product_url, headers=headers).content
             
             soup = BeautifulSoup(product_data, 'html.parser')
@@ -793,9 +779,9 @@ class get_model_image():
                 
             return 'https://lp.weekday.com/app003prod?set=key[resolve.pixelRatio],value[1]&set=key[resolve.width],value[450]&set=key[resolve.height],value[10000]&set=key[resolve.imageFit],value[containerwidth]&set=key[resolve.allowImageUpscaling],value[0]&set=key[resolve.format],value[webp]&set=key[resolve.quality],value[90]&:' + product_img_url
         except:
-            pass
+            return None
 
-    def zalando(number, count, userID):
+    def zalando(number):
         img_data = requests.get(f'https://www.zalando.be/dames/?q={number}', headers=headers).content
         data = str(img_data)
             
@@ -805,7 +791,7 @@ class get_model_image():
         product_img_url = product_img_url[:product_img_url.find('?imwidth=')]
         return product_img_url
 
-    def riverisland(number, count, userID):
+    def riverisland(number):
         return f'https://images.riverisland.com/is/image/RiverIsland/_{number}_main?$ProductImagePortraitLarge$'
 
 class switch_page():
@@ -914,7 +900,6 @@ class extension():
 class recommend():
     @app.route('/recommend', methods=['GET'])
     def recommend_products():
-        userID = request.args['id']
         data = request.args['number'].split(' ')
         number = data[0]
         store = data[1]
@@ -1138,7 +1123,7 @@ def get_ramdom_img():
 
     return product_links, product_numbers, stores, product_img
 
-def get_link(number, storeName, userID, zara_model_img_status):
+def get_link(number, storeName, zara_model_img_status):
     if storeName == 'H&M':
         return f'https://www.hm.com/productpage.{number}.html'
     elif storeName == 'Pull&Bear':
@@ -1186,7 +1171,7 @@ def get_link(number, storeName, userID, zara_model_img_status):
     elif storeName == 'Weekday':
         product_data = requests.get(f"https://photorankapi-a.akamaihd.net/customers/219461/streams/bytag/{number}?auth_token=36250991614184b2b35282b4efc7de904d5f0fbf01936e8a65006fc56dd969c4&wrap_responses=1&version=v2.2", headers=headers).content
         
-        product_data = json.load(product_data)
+        product_data = json.loads(product_data)
             
         try: 
             return product_data['data']['product_url']
@@ -1197,29 +1182,29 @@ def get_link(number, storeName, userID, zara_model_img_status):
     else:
         return ''
                 
-def get_model_store(storeName, number, count, userID):
+def get_model_store(storeName, number):
     if storeName == 'H&M':
-        url = get_model_image.hm(number, count, userID)
+        url = get_model_image.hm(number)
     elif storeName == 'Mango':
-        url = get_model_image.mango(number, count, userID)
+        url = get_model_image.mango(number)
     elif storeName == 'New Yorker':
-        url = get_model_image.newyorker(number, count, userID)
+        url = get_model_image.newyorker(number)
     elif storeName == 'Zara':
-        url = get_model_image.zara(number, count, userID)
+        url = get_model_image.zara(number)
     elif storeName == 'Pull&Bear':
-        url = get_model_image.pullbear(number, count, userID)
+        url = get_model_image.pullbear(number)
     elif storeName == 'Stradivarius':
-        url = get_model_image.stradivarius(number, count, userID)
+        url = get_model_image.stradivarius(number)
     elif storeName == 'Bershka':
-        url = get_model_image.bershka(number, count, userID)
+        url = get_model_image.bershka(number)
     elif storeName == 'WE':
-        url = get_model_image.we(number, count, userID)
+        url = get_model_image.we(number)
     elif storeName == 'Weekday':
-        url = get_model_image.weekday(number, count, userID)
+        url = get_model_image.weekday(number)
     elif storeName == 'Zalando':
-        url = get_model_image.zalando(number, count, userID)
+        url = get_model_image.zalando(number)
     elif storeName == 'River Island':
-        url = get_model_image.riverisland(number, count, userID)
+        url = get_model_image.riverisland(number)
     return url
 
 def process_output(results, gender, userID):
@@ -1274,7 +1259,7 @@ def process_output(results, gender, userID):
         start = os.path.splitext(path)[0].find('\\')
         file_name = os.path.splitext(path)[0][start+1:] + os.path.splitext(path)[1]
         if storeName != 'Most Wanted' and storeName != 'New Yorker' and storeName != 'Stradivarius':
-            modelUrl = get_model_store(storeName, file_name[:-5], count, userID)
+            modelUrl = get_model_store(storeName, file_name[:-5])
             try:
                 reqstatus = requests.get(modelUrl, headers=headers).status_code
                 if reqstatus == 200:
@@ -1284,7 +1269,7 @@ def process_output(results, gender, userID):
                     model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{file_name[:-5]}.webp')
                 else:
                     model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{file_name[:-5]}.webp')
-            except:
+            except Exception as e:
                 model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{file_name[:-5]}.webp')
         else:
             if storeName == 'Stradivarius':
@@ -1304,7 +1289,7 @@ def process_output(results, gender, userID):
         else:
             recommended_avaible.append(False)
         
-        link = get_link(file_name[:-5], storeName, userID, zara_model_img_status)
+        link = get_link(file_name[:-5], storeName, zara_model_img_status)
         product_links.append(f'href={link}')
     
         if storeName != 'Most Wanted':
@@ -1560,7 +1545,4 @@ if __name__ == "__main__":
     app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
     log = logging.getLogger('werkzeug')
     log.setLevel(logging.ERROR)
-    log_file = open('log.txt', 'a')
-    log_file.write(f'-------------------------------------------------- {datetime.datetime.now().date()} Report ---------------------------------------------------\n')
-    log_file.close()
     app.run(host="0.0.0.0", threaded=True, port=5000)
