@@ -21,9 +21,6 @@ function UserAgreed() {
     }
 
     localStorage.setItem('UserAgreed', true)
-    var request = new XMLHttpRequest();
-    request.open("GET", "/full_reset" + UserID, true);
-    request.send();
 }
 
 $(document).ready(function () {
@@ -39,8 +36,5 @@ $(document).ready(function () {
         for (let i = 0; i < myElements.length; i++) {
             myElements[i].value = UserID;
         }
-        var request = new XMLHttpRequest();
-        request.open("GET", "/full_reset" + UserID, true);
-        request.send();
     }
 });
