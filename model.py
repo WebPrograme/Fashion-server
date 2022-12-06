@@ -1,15 +1,14 @@
-from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import GlobalMaxPooling2D
 from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 from sklearn.neighbors import NearestNeighbors
-from sklearn import metrics
 from PIL import Image
+from rich.progress import Progress
+from rich.console import Console
 import io
 import os
 import tensorflow as tf
 
-import json
 import requests
 import pickle
 import ast
@@ -17,20 +16,38 @@ import numpy as np
 from numpy.linalg import norm
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-
-
-model = ResNet50(weights="imagenet", include_top=False,
-                 input_shape=(224, 224, 3))
-#model.trainable = True
-model = Sequential([model, GlobalMaxPooling2D()]) # Faster but less accurate
+img_files_list = []
+features_list = []
+model = None
 
 pick_store = False
 product_status = False
 
-def process(url, headers, pageNumber):
-    global pick_store, product_status
+def initialize_model(dev_model):
+    global img_files_list, features_list, model
+    
+    console = Console()
+    
+    model = ResNet50(weights="imagenet", include_top=False, input_shape=(224, 224, 3)) 
     img_files_list = pickle.loads(requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/img_filesWOMEN3.pkl').content)
     features_list = pickle.loads(requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/image_features_embeddingWOMEN3.pkl').content)
+    
+    if not dev_model:
+        console.log("Innitializing ResNet50 model...")
+        
+        features_list = []
+        with Progress() as progress:
+            task = progress.add_task("[green]Loading data...", total=63)
+            for i in range(63):
+                temp_data = pickle.loads(requests.get(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/files/image_features_embeddingWOMEN{i}.pkl').content)
+                features_list += temp_data
+                progress.update(task, advance=1)
+    else:
+        console.log("Innitializing ResNet50 + Sequential model...")
+        model = Sequential([model, GlobalMaxPooling2D()]) # Faster but less accurate
+
+def process(url, headers, pageNumber):
+    global pick_store, product_status, img_files_list, features_list, model
     features = extract_img_features(url, headers, model)
     img_distence, img_indicess = recommendd(features, features_list)
     results = []

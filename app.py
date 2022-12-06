@@ -25,6 +25,25 @@ dev_status = False
 console = Console()
 error_console = Console(stderr=True, style="bold red")
 
+temp_list = []
+ready2go_results_list = []
+last_index = 0
+ready2go_results = requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/data/ready2go_results.txt').content
+ready2go_results = ready2go_results.decode('utf-8')
+
+for count, i in enumerate(ready2go_results):
+    if i == ']':
+        temp_list.append(ready2go_results[last_index:count])
+        last_index = count
+
+for i in temp_list:
+    a = i.split(', ')
+    if ']\n' in a[0]:
+        a[0] = a[0].replace(']\n', '')
+    elif '] \n' in a[0]:
+        a[0] = a[0].replace('] \n', '')
+    ready2go_results_list.append(a)
+
 express_color_list_file = requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/data/express_color_list.json').content
 express_color_list = json.loads(express_color_list_file)['colors']
 
@@ -767,7 +786,6 @@ class get_model_image():
 
     def weekday(number):
         product_data = requests.get(f"https://www.weekday.com/en_eur/search.html?q={number}", headers=headers).content
-        print(product_data)
         
         try:
             soup = BeautifulSoup(product_data, 'html.parser')
@@ -813,10 +831,33 @@ class switch_page():
             process_with_image = True
         
         try:
-            if process_with_image:
-                results = model.process_file(url_b64, 1)
+            if share_method == 'ready2go':
+                if 'H&M' in share_store:
+                    store_path = 'fashion_hm'
+                elif 'Pull&Bear' in share_store:
+                    store_path = 'fashion_pullbear'
+                elif 'Bershka' in share_store:
+                    store_path = 'fashion_bershka'
+                elif 'Mango' in share_store:
+                    store_path = 'fashion_mango'
+                elif 'Zalando' in share_store:
+                    store_path = 'fashion_zalando'
+                elif 'Zara' in share_store:
+                    storeName = 'Zara'
+                    store_path = 'fashion_zara'
+                elif 'Stradivarius' in share_store:
+                    store_path = 'fashion_stradivarius'
+                elif 'Ready2Go' in share_store:
+                    store_path = 'ready2go'
+                    
+                used_file = f'{store_path}//women\\{share_content}.webp'
+                file_index = forselectedItems.index(used_file)
+                results = list(ready2go_results_list)[file_index][:10]
             else:
-                results = model.process(url, used_headers, 1)
+                if process_with_image:
+                    results = model.process_file(url_b64, 1)
+                else:
+                    results = model.process(url, used_headers, 1)
             uploaded_img_path = url
             terminal.log(f'10 results found with input type: IMAGE and with gender: WOMEN')
             dev_mode(f'Results: {results}')
@@ -844,10 +885,33 @@ class switch_page():
         share_content = request.form['share-content']
         share_method = request.form['share-method']
         try:
-            if process_with_image:
-                results = model.process_file(url_b64, 2)
+            if share_method == 'ready2go':
+                if 'H&M' in share_store:
+                    store_path = 'fashion_hm'
+                elif 'Pull&Bear' in share_store:
+                    store_path = 'fashion_pullbear'
+                elif 'Bershka' in share_store:
+                    store_path = 'fashion_bershka'
+                elif 'Mango' in share_store:
+                    store_path = 'fashion_mango'
+                elif 'Zalando' in share_store:
+                    store_path = 'fashion_zalando'
+                elif 'Zara' in share_store:
+                    storeName = 'Zara'
+                    store_path = 'fashion_zara'
+                elif 'Stradivarius' in share_store:
+                    store_path = 'fashion_stradivarius'
+                elif 'Ready2Go' in share_store:
+                    store_path = 'ready2go'
+                    
+                used_file = f'{store_path}//women\\{share_content}.webp'
+                file_index = forselectedItems.index(used_file)
+                results = list(ready2go_results_list)[file_index][10:]
             else:
-                results = model.process(url, used_headers, 2)
+                if process_with_image:
+                    results = model.process_file(url_b64, 2)
+                else:
+                    results = model.process(url, used_headers, 2)
             uploaded_img_path = url
             terminal.log(f'10 results found with input type: IMAGE and with gender: WOMEN')
             dev_mode(f'Results: {results}')
@@ -1350,9 +1414,12 @@ def predict():
                 share_store = store
                 share_content = number
                 
+                used_file = f'{store_path}//women\\{number}.webp'
+                file_index = forselectedItems.index(used_file)
+                results = list(ready2go_results_list)[file_index][:10]
+                
                 url = f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{number}.webp'
                 terminal.log(f'Programm started with given input')
-                results = model.process(url, '', 1)
                 terminal.log(f'10 results found with input type: Ready2Go images')
                 dev_mode(f'Results: {results}')
                 uploaded_img_path = url
@@ -1462,9 +1529,12 @@ def predict():
             share_store = store
             share_content = number
                 
+            used_file = f'{store_path}//women\\{number}.webp'
+            file_index = forselectedItems.index(used_file)
+            results = list(ready2go_results_list)[file_index][:10]
+            
             url = f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{number}.webp'
             terminal.log(f'Programm started with given input')
-            results = model.process(url, '', 1)
             terminal.log(f'10 results found with input type: Ready2Go images')
             dev_mode(f'Results: {results}')
             uploaded_img_path = url
@@ -1538,6 +1608,11 @@ if __name__ == "__main__":
     parser.add_argument('-reset', '--reset', action='store_true', help='Reset all users')
     args = parser.parse_args()
     dev_status = args.dev_mode
+    if dev_status == True:
+        dev_mode('Dev mode enabled')
+        model.initialize_model(True)
+    else:
+        model.initialize_model(False)
     reset_status = args.reset
     app.secret_key = 'FR6545'
     app.config['SESSION_TYPE'] = 'Fashion recommender'
