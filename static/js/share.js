@@ -4,11 +4,11 @@ var shareContent = document.getElementById('share-content').value;
 var shareMethod = document.getElementById('share-method').value;
 
 if (shareMethod == 'link') {
-    var shareURL = 'http://127.0.0.1:5000/predict/?UserID=' + shareID + '&store=' + shareStore + '&link=' + shareContent; 
+    var shareURL = 'https://fashion-recommender.onrender.com/predict/?UserID=' + shareID + '&store=' + shareStore + '&link=' + shareContent; 
 } else if (shareMethod == 'number') {
-    var shareURL = 'http://127.0.0.1:5000/predict/?UserID=' + shareID + '&store=' + shareStore + '&number=' + shareContent; 
+    var shareURL = 'https://fashion-recommender.onrender.com/predict/?UserID=' + shareID + '&store=' + shareStore + '&number=' + shareContent; 
 } else {
-    var shareURL = 'http://127.0.0.1:5000/predict/?UserID=' + shareID + '&forselected-input=' + shareStore + ' ' + shareContent; 
+    var shareURL = 'https://fashion-recommender.onrender.com/predict/?UserID=' + shareID + '&forselected-input=' + shareStore + ' ' + shareContent; 
 }
 
 const shareData = {
