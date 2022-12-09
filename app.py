@@ -934,6 +934,7 @@ class switch_page():
 
 class extension():
     @app.route('/extension', methods=['POST', 'GET'])
+    @cross_origin(origin='*',headers=['Content- Type','Authorization'])
     def open_extension():
         if request.method == 'POST':
             start_time = datetime.datetime.now()
@@ -956,6 +957,7 @@ class extension():
                 return redirect('/')
             
     @app.route('/extensioninput', methods=['POST', 'GET'])
+    @cross_origin(origin='*',headers=['Content- Type','Authorization'])
     def input_extension():
         link = request.form['link']
         userID = request.form['id']
@@ -1625,7 +1627,7 @@ if __name__ == "__main__":
     reset_status = args.reset
     app.secret_key = 'FR6545'
     app.config['SESSION_TYPE'] = 'Fashion recommender'
-    cors = CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True, allow_headers=['Access-Control-Allow-Origin'])
+    cors = CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True, allow_headers=['Access-Control-Allow-Origin'])
     app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
     log = logging.getLogger('werkzeug')
     log.setLevel(logging.ERROR)
