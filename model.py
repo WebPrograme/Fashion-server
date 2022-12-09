@@ -49,6 +49,7 @@ def initialize_model(dev_model):
 def process(url, headers, pageNumber):
     global pick_store, product_status, img_files_list, features_list, model
     features = extract_img_features(url, headers, model)
+    print(len(features_list))
     img_distence, img_indicess = recommendd(features, features_list)
     results = []
     
@@ -85,7 +86,6 @@ def extract_img_features_from_file(file, model):
 
 def extract_img_features(url, headers, model):
     try:
-        print(headers)
         if headers != '':
             if type(headers) == str:
                 headers = ast.literal_eval(headers)

@@ -1628,4 +1628,5 @@ if __name__ == "__main__":
     app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
     log = logging.getLogger('werkzeug')
     log.setLevel(logging.ERROR)
+    print('Server started')
     app.run(host="0.0.0.0", threaded=True, port=5000)
