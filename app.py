@@ -409,7 +409,9 @@ class extract_img():
             
             number = json.loads(data)['content']['docs'][0]['mocacoReference'].replace('/', '')
             
-            possible_urls = [f"https://static.pullandbear.net/2/photos//2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?",
+            possible_urls = [f"https://static.pullandbear.net/2/photos//2023/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?",
+                            f"https://static.pullandbear.net/2/photos//2023/V/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2023/I/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?",
+                            f"https://static.pullandbear.net/2/photos//2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?",
                             f"https://static.pullandbear.net/2/photos//2022/V/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?",
                             f"https://static.pullandbear.net/2/photos//2021/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2021/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?",
                             f"https://static.pullandbear.net/2/photos//2021/V/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2021/I/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_6_8.jpg?"]
@@ -579,7 +581,9 @@ class extract_img():
                 start = data.find('colors":[{"id":"') + 16
                 colorId = data[start:start+3]
                 
-                possible_urls = [f"https://static.pullandbear.net/2/photos//2022/V/0/1/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/1/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?",
+                possible_urls = [f"https://static.pullandbear.net/2/photos//2023/V/0/1/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2023/I/0/1/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?",
+                                f"https://static.pullandbear.net/2/photos//2023/V/0/2/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2023/I/0/2/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?",
+                                f"https://static.pullandbear.net/2/photos//2022/V/0/1/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/1/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?",
                                 f"https://static.pullandbear.net/2/photos//2022/V/0/2/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/2/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?",
                                 f"https://static.pullandbear.net/2/photos//2021/V/0/1/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2021/I/0/1/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?",
                                 f"https://static.pullandbear.net/2/photos//2021/V/0/2/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2021/I/0/2/p/{number_1}/{number_2}/{colorId}/{number_3}{colorId}_2_6_8.jpg?"]
@@ -590,7 +594,9 @@ class extract_img():
                         return url, headers
                 
             else:
-                possible_urls = [f"https://static.pullandbear.net/2/photos//2022/V/0/1/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/1/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?",
+                possible_urls = [f"https://static.pullandbear.net/2/photos//2023/V/0/1/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2023/I/0/1/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?",
+                                f"https://static.pullandbear.net/2/photos//2023/V/0/2/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2023/I/0/2/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?",
+                                f"https://static.pullandbear.net/2/photos//2022/V/0/1/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/1/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?",
                                 f"https://static.pullandbear.net/2/photos//2022/V/0/2/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/2/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?",
                                 f"https://static.pullandbear.net/2/photos//2021/V/0/1/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2021/I/0/1/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?",
                                 f"https://static.pullandbear.net/2/photos//2021/V/0/2/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?", f"https://static.pullandbear.net/2/photos//2021/I/0/2/p/{number[start:start+4]}/{number[start+4:start+7]}/{number[end+3:end+6]}/{number[start:start+7]}{number[end+3:end+6]}_2_6_8.jpg?"]
@@ -757,7 +763,9 @@ class get_model_image():
             pass
 
     def pullbear(number):
-        possible_urls = [f"https://static.pullandbear.net/2/photos//2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?",
+        possible_urls = [f"https://static.pullandbear.net/2/photos//2023/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?",
+                         f"https://static.pullandbear.net/2/photos//2023/V/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2023/I/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?",
+                         f"https://static.pullandbear.net/2/photos//2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?",
                          f"https://static.pullandbear.net/2/photos//2022/V/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2022/I/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?",
                          f"https://static.pullandbear.net/2/photos//2021/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2021/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?",
                          f"https://static.pullandbear.net/2/photos//2021/V/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2021/I/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?"]
@@ -771,7 +779,9 @@ class get_model_image():
         return f"https://static.e-stradivarius.net/5/photos3/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?"
         
     def bershka(number):
-        possible_urls = [f"https://static.bershka.net/4/photos2/2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?", f"https://static.bershka.net/4/photos2/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?",
+        possible_urls = [f"https://static.bershka.net/4/photos2/2023/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?", f"https://static.bershka.net/4/photos2/2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?",
+                         f"https://static.bershka.net/4/photos2/2023/V/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?", f"https://static.bershka.net/4/photos2/2023/I/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?",
+                         f"https://static.bershka.net/4/photos2/2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?", f"https://static.bershka.net/4/photos2/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?",
                          f"https://static.bershka.net/4/photos2/2022/V/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?", f"https://static.bershka.net/4/photos2/2022/I/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?",
                          f"https://static.bershka.net/4/photos2/2021/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?", f"https://static.bershka.net/4/photos2/2021/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?",
                          f"https://static.bershka.net/4/photos2/2021/V/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?", f"https://static.bershka.net/4/photos2/2021/I/0/2/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?"]
@@ -929,9 +939,12 @@ class extension():
             start_time = datetime.datetime.now()
             url = request.form['url']
             used_headers = request.form['headers']
+            userID = ' '
             gender = 'WOMEN'
             
             try:
+                terminal.log(f'Programm started with input type: EXT')
+                print(url)
                 results = model.process(url, used_headers, 1)
                 terminal.log(f'10 results found with input type: EXTENSION and with gender: {gender.upper()}')
                 dev_mode(f'Results: {results}')
@@ -949,10 +962,11 @@ class extension():
         userID = request.form['id']
         store = request.form['store']
         try:
-            url, used_headers = extract_img.extract_img_from_link(link, store)                
-        except:
+            url, used_headers = extract_img.extract_img_from_link(link, store)
+            img_data = {'url': url, 'headers': used_headers}
+        except Exception as e:
             return 'Error'
-        return [url, used_headers]
+        return img_data
 
 class recommend():
     @app.route('/recommend', methods=['GET'])
@@ -1333,9 +1347,12 @@ def process_output(results, gender, userID):
                     
                 number = file_name[:-5]
                 req = requests.get(f'https://static.e-stradivarius.net/5/photos3/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:10]}/{number}_1_1_2.jpg', headers=headers)
+                req_2023 = requests.get(f'https://static.e-stradivarius.net/5/photos3/2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:10]}/{number}_1_1_2.jpg', headers=headers)
                 
                 if req.status_code == 200:
                     model_img.append(f'https://static.e-stradivarius.net/5/photos3/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:10]}/{number}_1_1_2.jpg')
+                elif req_2023.status_code == 200:
+                    model_img.append(f'https://static.e-stradivarius.net/5/photos3/2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:10]}/{number}_1_1_2.jpg')
                 else:
                     model_img.append(f'https://static.e-stradivarius.net/5/photos3/2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:10]}/{number}_1_1_2.jpg')
             else:
