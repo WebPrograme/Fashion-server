@@ -1483,7 +1483,6 @@ def predict():
                 results = model.process(url, used_headers, 1)
                 terminal.log(f'10 results found with input type: {inputType} and with gender: {gender.upper()}')
                 dev_mode(f'Results: {results}')
-                files = os.listdir('uploads')
                 uploaded_img_path = url
                 model_img, product_img, product_links, stores, product_numbers, recommended_avaible = process_output(results, gender, userID)
                 terminal.log(f'Programm ended succesfully in {(datetime.datetime.now() - start_time).total_seconds()} seconds')

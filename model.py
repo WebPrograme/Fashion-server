@@ -85,6 +85,7 @@ def extract_img_features_from_file(file, model):
 
 def extract_img_features(url, headers, model):
     try:
+        print(headers)
         if headers != '':
             if type(headers) == str:
                 headers = ast.literal_eval(headers)
