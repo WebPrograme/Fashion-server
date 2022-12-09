@@ -944,7 +944,6 @@ class extension():
             
             try:
                 terminal.log(f'Programm started with input type: EXT')
-                print(url)
                 results = model.process(url, used_headers, 1)
                 terminal.log(f'10 results found with input type: EXTENSION and with gender: {gender.upper()}')
                 dev_mode(f'Results: {results}')
@@ -1626,7 +1625,7 @@ if __name__ == "__main__":
     reset_status = args.reset
     app.secret_key = 'FR6545'
     app.config['SESSION_TYPE'] = 'Fashion recommender'
-    cors = CORS(app)
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
     app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
     log = logging.getLogger('werkzeug')
     log.setLevel(logging.ERROR)
