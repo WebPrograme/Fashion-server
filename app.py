@@ -1623,7 +1623,7 @@ def upload(filename):
 #else:
 #    model.initialize_model(False)
 #reset_status = args.reset
-model.initialize_model(True)
+#model.initialize_model(True)
 cors = CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True, allow_headers=['Access-Control-Allow-Origin'])
 app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
 log = logging.getLogger('werkzeug')
