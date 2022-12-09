@@ -927,14 +927,15 @@ class extension():
     def open_extension():
         if request.method == 'POST':
             start_time = datetime.datetime.now()
-            userID = request.form['id']
+            url = request.form['url']
+            used_headers = request.form['headers']
             gender = 'WOMEN'
             
             try:
-                results = model.process(gender, userID, 1)
+                results = model.process(url, used_headers, 1)
                 terminal.log(f'10 results found with input type: EXTENSION and with gender: {gender.upper()}')
                 dev_mode(f'Results: {results}')
-                uploaded_img_path = userID + '.png'
+                uploaded_img_path = url
                 model_img, product_img, product_links, stores, product_numbers, recommended_avaible = process_output(results, gender, userID)
                 terminal.log(f'Programm ended succesfully in {(datetime.datetime.now() - start_time).total_seconds()} seconds')
                 return render_template(f'pages/predict_page_1.html', recommend_avaible_1=recommended_avaible[0], recommend_avaible_2=recommended_avaible[1], recommend_avaible_3=recommended_avaible[2], recommend_avaible_4=recommended_avaible[3], recommend_avaible_5=recommended_avaible[4], recommend_avaible_6=recommended_avaible[5], recommend_avaible_7=recommended_avaible[6], recommend_avaible_8=recommended_avaible[7], recommend_avaible_9=recommended_avaible[8], recommend_avaible_10=recommended_avaible[9], UserID=userID, gender=gender.capitalize(), uploaded_img=uploaded_img_path, headers=headers, display_status='style=display:none', product_link_1=product_links[0], product_number_1=product_numbers[0], product_store_1=stores[0], product_model_img_1=model_img[0], product_img_1=product_img[0], product_link_2=product_links[1], product_number_2=product_numbers[1], product_store_2=stores[1], product_model_img_2=model_img[1], product_img_2=product_img[1], product_link_3=product_links[2], product_number_3=product_numbers[2], product_store_3=stores[2], product_model_img_3=model_img[2], product_img_3=product_img[2], product_link_4=product_links[3], product_number_4=product_numbers[3], product_store_4=stores[3], product_model_img_4=model_img[3], product_img_4=product_img[3], product_link_5=product_links[4], product_number_5=product_numbers[4], product_store_5=stores[4], product_model_img_5=model_img[4], product_img_5=product_img[4], product_link_6=product_links[5], product_number_6=product_numbers[5], product_store_6=stores[5], product_model_img_6=model_img[5], product_img_6=product_img[5], product_link_7=product_links[6], product_number_7=product_numbers[6], product_store_7=stores[6], product_model_img_7=model_img[6], product_img_7=product_img[6], product_link_8=product_links[7], product_number_8=product_numbers[7], product_store_8=stores[7], product_model_img_8=model_img[7], product_img_8=product_img[7], product_link_9=product_links[8], product_number_9=product_numbers[8], product_store_9=stores[8], product_model_img_9=model_img[8], product_img_9=product_img[8], product_link_10=product_links[9], product_number_10=product_numbers[9], product_store_10=stores[9], product_model_img_10=model_img[9], product_img_10=product_img[9])          
@@ -948,18 +949,10 @@ class extension():
         userID = request.form['id']
         store = request.form['store']
         try:
-            extract_img.extract_img_from_link(link, store)                
-            try:
-                os.remove(f'bin\\{userID}.json')
-            except:
-                pass
-            try:
-                os.remove(f'bin\\{userID}.html')
-            except:
-                pass
+            url, used_headers = extract_img.extract_img_from_link(link, store)                
         except:
             return 'Error'
-        return 'Done'
+        return [url, used_headers]
 
 class recommend():
     @app.route('/recommend', methods=['GET'])
