@@ -23,6 +23,8 @@ model = None
 pick_store = False
 product_status = False
 
+print("Innitializing ResNet50 model...")
+
 model = ResNet50(weights="imagenet", include_top=False, input_shape=(224, 224, 3)) 
 model = Sequential([model, GlobalMaxPooling2D()]) # Faster but less accurate
         
