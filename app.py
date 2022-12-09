@@ -1612,17 +1612,18 @@ def predict():
 def upload(filename):
     return send_from_directory('uploads', filename)
 
-parser = ArgumentParser()
-parser.add_argument('-dev', '--dev-mode', action='store_true', help='Enable dev mode')
-parser.add_argument('-reset', '--reset', action='store_true', help='Reset all users')
-args = parser.parse_args()
-dev_status = args.dev_mode
-if dev_status == True:
-    dev_mode('Dev mode enabled')
-    model.initialize_model(True)
-else:
-    model.initialize_model(False)
-reset_status = args.reset
+#parser = ArgumentParser()
+#parser.add_argument('-dev', '--dev-mode', action='store_true', help='Enable dev mode')
+#parser.add_argument('-reset', '--reset', action='store_true', help='Reset all users')
+#args = parser.parse_args()
+#dev_status = args.dev_mode
+#if dev_status == True:
+#    dev_mode('Dev mode enabled')
+#    model.initialize_model(True)
+#else:
+#    model.initialize_model(False)
+#reset_status = args.reset
+model.initialize_model(False)
 cors = CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True, allow_headers=['Access-Control-Allow-Origin'])
 app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
 log = logging.getLogger('werkzeug')
