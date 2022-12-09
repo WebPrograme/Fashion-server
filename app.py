@@ -1625,7 +1625,7 @@ if __name__ == "__main__":
     reset_status = args.reset
     app.secret_key = 'FR6545'
     app.config['SESSION_TYPE'] = 'Fashion recommender'
-    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True, allow_headers=['Access-Control-Allow-Origin'])
     app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
     log = logging.getLogger('werkzeug')
     log.setLevel(logging.ERROR)
