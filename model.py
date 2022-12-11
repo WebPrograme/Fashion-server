@@ -23,14 +23,6 @@ model = None
 pick_store = False
 product_status = False
 
-print("Innitializing ResNet50 model...")
-
-model = ResNet50(weights="imagenet", include_top=False, input_shape=(224, 224, 3)) 
-model = Sequential([model, GlobalMaxPooling2D()]) # Faster but less accurate
-        
-img_files_list = pickle.loads(requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/img_filesWOMEN3.pkl').content)
-features_list = pickle.loads(requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/image_features_embeddingWOMEN3.pkl').content)
-
 def initialize_model(dev_model):
     global img_files_list, features_list, model
     
@@ -57,7 +49,6 @@ def initialize_model(dev_model):
 def process(url, headers, pageNumber):
     global pick_store, product_status, img_files_list, features_list, model
     features = extract_img_features(url, headers, model)
-    print(len(features_list))
     img_distence, img_indicess = recommendd(features, features_list)
     results = []
     

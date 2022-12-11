@@ -1399,10 +1399,10 @@ def predict():
             return redirect('/')
         if 'file' not in request.files:
             userID = request.form['UserID']
-            try:
-                a = request.form['forselected-input'].split(' ')
-                store = a[0]
-                number = a[1]
+            if 'forselected-input' in request.form:
+                request_content = request.form['forselected-input'].split(' ')
+                store = request_content[0]
+                number = request_content[1]
                 if 'H&M' in store:
                     store_path = 'fashion_hm'
                 elif 'Pull&Bear' in store:
@@ -1437,33 +1437,29 @@ def predict():
                 model_img, product_img, product_links, stores, product_numbers, recommended_avaible = process_output(results, 'WOMEN', userID)
                 terminal.log(f'Programm ended succesfully in {(datetime.datetime.now() - start_time).total_seconds()} seconds')
                 return render_template('pages/predict_page_1.html', share_method=share_method, share_store=share_store, share_content=share_content, recommend_avaible_1=recommended_avaible[0], recommend_avaible_2=recommended_avaible[1], recommend_avaible_3=recommended_avaible[2], recommend_avaible_4=recommended_avaible[3], recommend_avaible_5=recommended_avaible[4], recommend_avaible_6=recommended_avaible[5], recommend_avaible_7=recommended_avaible[6], recommend_avaible_8=recommended_avaible[7], recommend_avaible_9=recommended_avaible[8], recommend_avaible_10=recommended_avaible[9], UserID=userID, gender='Women', uploaded_img=uploaded_img_path, headers='', display_status='style=display:none', product_link_1=product_links[0], product_number_1=product_numbers[0], product_store_1=stores[0], product_model_img_1=model_img[0], product_img_1=product_img[0], product_link_2=product_links[1], product_number_2=product_numbers[1], product_store_2=stores[1], product_model_img_2=model_img[1], product_img_2=product_img[1], product_link_3=product_links[2], product_number_3=product_numbers[2], product_store_3=stores[2], product_model_img_3=model_img[2], product_img_3=product_img[2], product_link_4=product_links[3], product_number_4=product_numbers[3], product_store_4=stores[3], product_model_img_4=model_img[3], product_img_4=product_img[3], product_link_5=product_links[4], product_number_5=product_numbers[4], product_store_5=stores[4], product_model_img_5=model_img[4], product_img_5=product_img[4], product_link_6=product_links[5], product_number_6=product_numbers[5], product_store_6=stores[5], product_model_img_6=model_img[5], product_img_6=product_img[5], product_link_7=product_links[6], product_number_7=product_numbers[6], product_store_7=stores[6], product_model_img_7=model_img[6], product_img_7=product_img[6], product_link_8=product_links[7], product_number_8=product_numbers[7], product_store_8=stores[7], product_model_img_8=model_img[7], product_img_8=product_img[7], product_link_9=product_links[8], product_number_9=product_numbers[8], product_store_9=stores[8], product_model_img_9=model_img[8], product_img_9=product_img[8], product_link_10=product_links[9], product_number_10=product_numbers[9], product_store_10=stores[9], product_model_img_10=model_img[9], product_img_10=product_img[9])
-            except:
+            else:
                 gender = 'Women'
                 inputType = 'Ready2Go images'
                 pass
-            try:
-                a = request.form['link']
-                terminal.log(f'Extracting image with link ({a}) and store ({request.form["store"]})')
+            if 'link' in request.form:
+                request_content_link = request.form['link']
+                terminal.log(f'Extracting image with link ({request_content_link}) and store ({request.form["store"]})')
                 inputType = 'LINK'
-                share_content = request.form['link']
+                share_content = request_content_link
                 share_store = request.form['store']
                 share_method = 'link'
                 try:
-                    url, used_headers = extract_img.extract_img_from_link(request.form['link'], request.form['store'])
+                    url, used_headers = extract_img.extract_img_from_link(request_content_link, request.form['store'])
                 except Exception as e:         
                     product_links, product_numbers, stores, product_img = get_ramdom_img()
                     flash('Product not found. Try with another link or store.')
                     terminal.error(f'An error accured when extracting image with as input type {inputType}: {e}')
                     return redirect('/')    
-            except:
+            else:
                 terminal.log(f'Extracting image with number ({request.form["number"]}) and store ({request.form["store"]})')
                 inputType = 'NUMBER'
                 try:
-                    try:
-                        a = request.form['gender-switch']
-                        gender = 'man'
-                    except:
-                        gender = 'woman'
+                    gender = 'woman'
                     url, used_headers = extract_img.extract_img_from_number(request.form['number'], request.form['store'] , userID, gender)
                     share_content = request.form['number']
                     share_store = request.form['store']
@@ -1474,11 +1470,7 @@ def predict():
                     terminal.error(f'An error accured when extracting image with as input type {inputType}: {e}')
                     return redirect('/') 
             try:
-                try:
-                    a = request.form['gender-switch']
-                    gender = 'MEN'
-                except:
-                    gender = 'WOMEN'
+                gender = 'WOMEN'
                 terminal.log(f'Programm started with given input')
                 results = model.process(url, used_headers, 1)
                 terminal.log(f'10 results found with input type: {inputType} and with gender: {gender.upper()}')
@@ -1513,10 +1505,10 @@ def predict():
                 return redirect('/') 
     else:      
         userID = request.args['UserID']
-        try:
-            a = request.args['forselected-input'].split(' ')
-            store = a[0]
-            number = a[1]
+        if 'forselected-input' in request.args:
+            request_content = request.args['forselected-input'].split(' ')
+            store = request_content[0]
+            number = request_content[1]
             if 'H&M' in store:
                 store_path = 'fashion_hm'
             elif 'Pull&Bear' in store:
@@ -1551,33 +1543,29 @@ def predict():
             model_img, product_img, product_links, stores, product_numbers, recommended_avaible = process_output(results, 'WOMEN', userID)
             terminal.log(f'Programm ended succesfully in {(datetime.datetime.now() - start_time).total_seconds()} seconds')
             return render_template('pages/predict_page_1.html', share_method=share_method, share_store=share_store, share_content=share_content, recommend_avaible_1=recommended_avaible[0], recommend_avaible_2=recommended_avaible[1], recommend_avaible_3=recommended_avaible[2], recommend_avaible_4=recommended_avaible[3], recommend_avaible_5=recommended_avaible[4], recommend_avaible_6=recommended_avaible[5], recommend_avaible_7=recommended_avaible[6], recommend_avaible_8=recommended_avaible[7], recommend_avaible_9=recommended_avaible[8], recommend_avaible_10=recommended_avaible[9], UserID=userID, gender='Women', uploaded_img=uploaded_img_path, headers=used_headers, display_status='style=display:none', product_link_1=product_links[0], product_number_1=product_numbers[0], product_store_1=stores[0], product_model_img_1=model_img[0], product_img_1=product_img[0], product_link_2=product_links[1], product_number_2=product_numbers[1], product_store_2=stores[1], product_model_img_2=model_img[1], product_img_2=product_img[1], product_link_3=product_links[2], product_number_3=product_numbers[2], product_store_3=stores[2], product_model_img_3=model_img[2], product_img_3=product_img[2], product_link_4=product_links[3], product_number_4=product_numbers[3], product_store_4=stores[3], product_model_img_4=model_img[3], product_img_4=product_img[3], product_link_5=product_links[4], product_number_5=product_numbers[4], product_store_5=stores[4], product_model_img_5=model_img[4], product_img_5=product_img[4], product_link_6=product_links[5], product_number_6=product_numbers[5], product_store_6=stores[5], product_model_img_6=model_img[5], product_img_6=product_img[5], product_link_7=product_links[6], product_number_7=product_numbers[6], product_store_7=stores[6], product_model_img_7=model_img[6], product_img_7=product_img[6], product_link_8=product_links[7], product_number_8=product_numbers[7], product_store_8=stores[7], product_model_img_8=model_img[7], product_img_8=product_img[7], product_link_9=product_links[8], product_number_9=product_numbers[8], product_store_9=stores[8], product_model_img_9=model_img[8], product_img_9=product_img[8], product_link_10=product_links[9], product_number_10=product_numbers[9], product_store_10=stores[9], product_model_img_10=model_img[9], product_img_10=product_img[9])
-        except:
+        else:
             gender = 'Women'
             inputType = 'Ready2Go images'
             pass
-        try:
-            a = request.args['link']
-            terminal.log(f'Extracting image with link ({a}) and store ({request.args["store"]})')
+        if 'link' in request.args:
+            request_content_link = request.args['link']
+            terminal.log(f'Extracting image with link ({request_content_link}) and store ({request.args["store"]})')
             inputType = 'LINK'
-            share_content = request.args['link']
+            share_content = request_content_link
             share_store = request.args['store']
             share_method = 'link'
             try:
-                url, used_headers = extract_img.extract_img_from_link(request.args['link'], request.args['store'])
+                url, used_headers = extract_img.extract_img_from_link(request_content_link, request.args['store'])
             except Exception as e:         
                 product_links, product_numbers, stores, product_img = get_ramdom_img()
                 flash('Product not found. Try with another link or store.')
                 terminal.error(f'An error accured when extracting image with as input type {inputType}: {e}')
                 return redirect('/')    
-        except:
+        else:
             terminal.log(f'Extracting image with number ({request.args["number"]}) and store ({request.args["store"]})')
             inputType = 'NUMBER'
             try:
-                try:
-                    a = request.args['gender-switch']
-                    gender = 'man'
-                except:
-                    gender = 'woman'
+                gender = 'woman'
                 url, used_headers = extract_img.extract_img_from_number(request.args['number'], request.args['store'] , userID, gender)
                 share_content = request.args['number']
                 share_store = request.args['store']
@@ -1588,11 +1576,7 @@ def predict():
                 terminal.error(f'An error accured when extracting image with as input type {inputType}: {e}')
                 return redirect('/') 
         try:
-            try:
-                a = request.args['gender-switch']
-                gender = 'MEN'
-            except:
-                gender = 'WOMEN'
+            gender = 'WOMEN'
             terminal.log(f'Programm started with given input')
             results = model.process(url, used_headers, 1)
             terminal.log(f'10 results found with input type: Share and with gender: {gender.upper()}')
@@ -1623,7 +1607,11 @@ def upload(filename):
 #else:
 #    model.initialize_model(False)
 #reset_status = args.reset
-#model.initialize_model(True)
+if __name__ == '__main__':
+    model.initialize_model(True)
+else:
+    model.initialize_model(False)
+    
 cors = CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True, allow_headers=['Access-Control-Allow-Origin'])
 app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
 log = logging.getLogger('werkzeug')
