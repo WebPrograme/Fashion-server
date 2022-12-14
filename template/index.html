@@ -42,8 +42,8 @@
         <div class="spinner-border loader" role="status">
         </div>
         <span class='loading-span'>
-            <span>Processing...</span>
-            <p>This can take a few seconds</p>
+            <span>Loading...</span>
+            <p>We are starting the app</p>
         </span>
     </div>
 
@@ -679,7 +679,14 @@
     <script src="{{ url_for('static',filename='js/autostore.js') }}"> </script>
 
     <script>
-        function loading() {
+        function loading(status) {
+            if (status == 'processing') {
+                document.querySelector('.loading-span span').innerHTML = 'Processing...'
+                document.querySelector('.loading-span p').innerHTML = 'This can take a few seconds'
+            } else {
+                document.querySelector('.loading-span span').innerHTML = 'Loading...'
+                document.querySelector('.loading-span p').innerHTML = 'We are starting the app'
+            }
             $('.loader-background').show();
             document.body.style.cursor = 'wait';
         }
@@ -691,7 +698,7 @@
     </script>
     <script type="module">
         document.getElementById("upload-input").addEventListener("change", function (e) {
-            loading()
+            loading('processing')
             document.getElementById('uploader').submit()
         });
       </script>

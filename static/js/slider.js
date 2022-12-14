@@ -1,6 +1,6 @@
 document.querySelectorAll('.ready2go-card').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        loading()
+        loading('processing');
         document.getElementById('forselected-input').value = anchor.getAttribute('data-title')
         document.getElementById('forselected-form').submit()
     });

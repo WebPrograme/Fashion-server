@@ -68,6 +68,10 @@ body.show {
     animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 0.5) infinite;
 }
 
+.process-loader-background {
+    display: none;
+}
+
 .loader-background {
     z-index: 2000;
     position: fixed;
