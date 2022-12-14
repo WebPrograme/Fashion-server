@@ -37,6 +37,7 @@ $(document).ready(function () {
         UserID = localStorage.getItem('UserID');
     // Show the modal only if new user
     if (!userChoice) {
+        document.querySelector('.startupModalBody').innerHTML = `<video src="https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/Fashion%20recommender%203.mp4" autoplay muted loop id="myVideo"></video>`
         $('#startupBackdrop').modal('show');
         document.querySelector('.cookie').style.display = 'flex';
     } else {      

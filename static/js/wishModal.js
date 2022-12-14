@@ -19,7 +19,7 @@ if (wishList == null || wishList.length == 0) {
         item.innerHTML = `
         <div class="card">
             <div class="card-body">
-                <img src="static/` + data[i][3] + `" alt="No image is available" class="forselected-img wish-card-img"">
+                <img src="` + data[i][3] + `" alt="No image is available" class="forselected-img wish-card-img"">
                 <div class="wish-card-info">
                     <h4 class="card-title wish-card-number">` + data[i][1] + `</h4>
                     <h4 class="card-title text-muted wish-card-store">` + data[i][0] + `</h3>

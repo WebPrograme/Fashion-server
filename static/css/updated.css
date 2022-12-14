@@ -1072,6 +1072,13 @@ option:disabled {
     margin: auto;
 }
 
+.btn-picker i {
+    font-size: 1.5rem;
+    display: flex;
+    margin: auto;
+    padding: 1px;
+}
+
 #hidden-pick-form {
     display: none;
 }

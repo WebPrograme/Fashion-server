@@ -1,4 +1,8 @@
-function wish(event, value) {
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+
+async function wish(event, value) {
     event.preventDefault()
     value = value.split(' ')
     
@@ -17,42 +21,46 @@ function wish(event, value) {
         wishList.push(itemSet)
         localStorage.setItem('wishList', JSON.stringify(wishList))
 
-        if (source.nodeName && source.nodeName.toLowerCase() === 'span') {
+        if (source.nodeName && source.nodeName.toLowerCase() === 'i') {
             source.style.color = 'red'
-            source.classList.add('material-symbols-fill')        
+            source.classList.add('fa-solid')        
             source.classList.toggle('wish-btn-icon-active')
         } else {
             source.children[0].style.color = 'red'
-            source.children[0].classList.add('material-symbols-fill')
+            source.children[0].classList.add('fa-solid')
             source.children[0].classList.toggle('wish-btn-icon-active')
         }
     } else {
         for (var j = 0; j < wishList.length; j++) {
             if (wishList[j][0] == store && wishList[j][1] == number && wishList[j][2] == link && wishList[j][3] == imgPath) {
-                if (source.nodeName && source.nodeName.toLowerCase() === 'span') {
+                if (source.nodeName && source.nodeName.toLowerCase() === 'i') {
                     source.style.color = '#000'
-                    source.classList.remove('material-symbols-fill', 'wish-btn-icon-active')        
+                    source.classList.remove('fa-solid', 'wish-btn-icon-active')
                 } else {
                     source.children[0].style.color = '#000'
-                    source.children[0].classList.remove('material-symbols-fill', 'wish-btn-icon-active')
+                    source.children[0].classList.remove('fa-solid', 'wish-btn-icon-active')
                 }
                 wishList.splice(j, 1)
                 localStorage.setItem('wishList', JSON.stringify(wishList))
-                
+
                 return
             }
         }
         wishList.push(itemSet)
         localStorage.setItem('wishList', JSON.stringify(wishList))
 
-        if (source.nodeName && source.nodeName.toLowerCase() === 'span') {
+        if (source.nodeName && source.nodeName.toLowerCase() === 'i') {
             source.style.color = 'red'
-            source.classList.add('material-symbols-fill')
+            source.classList.add('fa-solid')
             source.classList.toggle('wish-btn-icon-active')
+            await delay(450)
+            source.classList.remove('wish-btn-icon-active')
         } else {
             source.children[0].style.color = 'red'
-            source.children[0].classList.add('material-symbols-fill')
+            source.children[0].classList.add('fa-solid')
             source.children[0].classList.toggle('wish-btn-icon-active')
+            await delay(450)
+            source.children[0].classList.remove('wish-btn-icon-active')
         }
     }
 }
@@ -81,7 +89,7 @@ if (wishList != null) {
         for (var j = 0; j < wishList.length; j++) {
             if (wishList[j][0] == store && wishList[j][1] == number && wishList[j][2] == link && wishList[j][3] == imgPath) {
                 btnPicker[i].children[0].style.color = 'red'
-                btnPicker[i].children[0].classList.add('material-symbols-fill')
+                btnPicker[i].children[0].classList.add('fa-solid')
             }
         }
     }
