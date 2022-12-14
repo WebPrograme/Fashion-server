@@ -1173,6 +1173,59 @@ option:disabled {
     max-width: 130px;
 }
 
+#myVideo{
+    width: 100%;
+}
+
+.cookie{
+    display: none;
+    justify-content: space-between;
+    font-family: 'Rubik', sans-serif;
+    box-shadow: 0px 0px 20px 11px rgb(0 0 0 / 10%);
+	width: 420px;
+    height: 72px;
+    max-width: 90%;
+    background-color: #fff;
+    position: fixed;
+    bottom: 88px;
+    border-radius: .35rem;
+	left: 5%;
+    right: 5%;
+	padding: 10px 20px;
+    z-index: 1000;
+}
+
+.cookie .txt{
+    height: min-content;
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+	float: left;
+    width: 65%;
+}
+.txt p{
+	color:#1D2D35;
+    height: min-content;
+    margin: 0rem;
+}
+
+.accept-div{
+    height: min-content;
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.cookie .accept {
+    display: flex;
+    margin-top: auto;
+    background-color: #0090e7;
+    color: #fff !important;
+    border-radius: .35rem;
+    align-self: center;
+    font-size: 1.1rem;
+}
+
 @media (max-width: 505px) {
     .second-store-column {
         margin-left: 0rem;

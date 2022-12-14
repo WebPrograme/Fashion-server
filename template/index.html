@@ -46,6 +46,18 @@
             <p>This can take a few seconds</p>
         </span>
     </div>
+
+    <div class="cookie">
+        <div class="txt">
+           <p class="">
+              By using Fashion recommender,<br>
+              you agree to our <a href="#" data-bs-toggle="modal" data-bs-target="#privacyBackdrop">Cookie Policy.</a>
+           </p>
+        </div>
+        <div class="accept-div">
+           <button class="btn btn-primary btn-block accept" onclick="UserAgreed(this)">Accept</button>
+        </div>
+    </div>
     
     <div class="modal fade" id="cookiesBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="cookiesdropLabel" aria-hidden="true"  data-keyboard="false">
@@ -192,6 +204,26 @@
                     <button type="button"
                         class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn"
                         data-bs-dismiss="modal">Understood!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="startupBackdrop" data-bs-backdrop="startup" data-bs-keyboard="false" tabindex="-1" aria-labelledby="startupBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h6 class="modal-title" id="wishBackdropLabel">How to?</h6>
+                        <h6 class="text-muted modal-title-description">Here you can find a video</h6>
+                    </div>
+                    <p type="button" data-bs-dismiss="modal">Close</p>
+                </div>
+                <div class="modal-body">
+                    <video src="https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/Fashion%20recommender%203.mp4" autoplay muted loop id="myVideo"></video>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn" data-bs-dismiss="modal">Understood!</button>
                 </div>
             </div>
         </div>

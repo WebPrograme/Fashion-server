@@ -4,7 +4,12 @@ function uuidv4() {
     );
 }
 
-function UserAgreed() {
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+
+async function UserAgreed(e) {
+    $(e).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`);	
     var key = 'UserAgreed',
         UserID = localStorage.getItem('UserID');
     if (!UserID) {
@@ -20,6 +25,8 @@ function UserAgreed() {
         document.querySelector('.alert-danger').style.display = 'none';
     }
 
+    await delay(900);
+    document.querySelector('.cookie').style.display = 'none';  
     localStorage.setItem('UserAgreed', true)
 }
 
@@ -30,8 +37,9 @@ $(document).ready(function () {
         UserID = localStorage.getItem('UserID');
     // Show the modal only if new user
     if (!userChoice) {
-        $('#cookiesBackdrop').modal('show');
-    } else {        
+        $('#startupBackdrop').modal('show');
+        document.querySelector('.cookie').style.display = 'flex';
+    } else {      
         var myElements = document.querySelectorAll('.useridInput')
         for (let i = 0; i < myElements.length; i++) {
             myElements[i].value = UserID;
