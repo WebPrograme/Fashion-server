@@ -55,9 +55,22 @@
            </p>
         </div>
         <div class="accept-div">
-           <button class="btn btn-primary btn-block accept" onclick="UserAgreed(this)">Accept</button>
+           <button class="btn btn-primary btn-block accept pulse" onclick="UserAgreed(this)">Accept</button>
         </div>
     </div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                    <div id="snackbar">{{ message }}</div>
+            {% endfor %}
+            <script>
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 7000);
+            </script>
+        {% endif %}
+    {% endwith %}
     
     <div class="modal fade" id="cookiesBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="cookiesdropLabel" aria-hidden="true"  data-keyboard="false">
@@ -477,16 +490,6 @@
                 </div>
 
                 
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-danger alert-show">
-                                <button type="button" class="close alert-close" data-dismiss="alert">&times;</button>
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
                 <div class="row card-items">
                     <div class="col-md-6 col-xl-6 grid-margin stretch-card">
                         <div class="card">
@@ -542,6 +545,7 @@
                                                 </div>
                                                 <select name="store" class="form-control" id="link-store-select" onchange="document.getElementById('link-confirm-btn').disabled = false">
                                                     <option selected disabled hidden>Choose a store</option>
+                                                    <option>Link of an image</option>
                                                     <option disabled>Most accurate:</option>
                                                     <option>H&M</option>
                                                     <option>Zara</option>
@@ -677,6 +681,7 @@
     <script src="{{ url_for('static',filename='js/dashboard.js') }}"> </script>
     <script src="{{ url_for('static',filename='js/slider.js') }}"> </script>
     <script src="{{ url_for('static',filename='js/autostore.js') }}"> </script>
+    <script src="{{ url_for('static',filename='js/upload.js') }}"> </script>
 
     <script>
         function loading(status) {

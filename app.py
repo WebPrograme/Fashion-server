@@ -712,6 +712,12 @@ class extract_img():
             imgSrc = data[start:end]
             
             return imgSrc, headers
+        elif store == 'Link of an image':
+            image_formats = ("image/png", "image/jpeg", "image/jpg")
+            r = requests.get(number, headers=headers)
+            if r.headers["content-type"] in image_formats:
+                return number, headers
+            return None, None
                                       
 class get_model_image():
     def hm(number):
@@ -1454,7 +1460,12 @@ def predict():
                     product_links, product_numbers, stores, product_img = get_ramdom_img()
                     flash('Product not found. Try with another link or store.')
                     terminal.error(f'An error accured when extracting image with as input type {inputType}: {e}')
-                    return redirect('/')    
+                    return redirect('/')   
+                if url == None:
+                    product_links, product_numbers, stores, product_img = get_ramdom_img()
+                    flash('Link doesn\'t contain an image. Try with another link.')
+                    terminal.error(f'An error accured when extracting image with as input type {inputType}')
+                    return redirect('/') 
             else:
                 terminal.log(f'Extracting image with number ({request.form["number"]}) and store ({request.form["store"]})')
                 inputType = 'NUMBER'
@@ -1607,6 +1618,9 @@ def upload(filename):
 #else:
 #    model.initialize_model(False)
 #reset_status = args.reset
+
+app.secret_key = 'FR6545'
+app.config['SESSION_TYPE'] = 'APPLICATION'
 if __name__ == '__main__':
     model.initialize_model(True)
 else:

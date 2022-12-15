@@ -314,6 +314,10 @@ img {
     color: #fff;
 }
 
+.alert-close:hover {
+    color: #fff;
+}
+
 .gender-toggle, .toggle {
     height: 2.3rem;
     border-radius: .35rem;
@@ -1114,7 +1118,7 @@ option:disabled {
     margin-right: -0.9375rem;
     pointer-events: none;
     background: rgb(255,255,255);
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.8) 30%, rgba(255,255,255,0) 100%);
     z-index: 999;
 }
 
@@ -1130,7 +1134,7 @@ option:disabled {
     margin-right: -0.9375rem;
     pointer-events: none;
     background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.8) 30%, rgba(255,255,255,0) 100%);
     z-index: 999;
 }
 
@@ -1235,6 +1239,100 @@ option:disabled {
     border-radius: .35rem;
     align-self: center;
     font-size: 1.1rem;
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    max-width: 95%;
+    width: 300px;
+    margin-left: calc(50% - 150px);
+    background-color: #fc424a;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 100;
+    top: 30px;
+    font-size: 15px;
+}
+  
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.pulse {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+	transform: scale(1);
+	animation: pulse 2s infinite;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+  
+    to {
+        top: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+
+    to {
+        top: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        top: 30px;
+        opacity: 1;
+    }
+
+    to {
+        top: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        top: 30px;
+        opacity: 1;
+    }
+
+    to {
+        top: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
 }
 
 @media (max-width: 505px) {

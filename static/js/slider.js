@@ -8,10 +8,10 @@ document.querySelectorAll('.ready2go-card').forEach(anchor => {
 
 document.querySelectorAll('.modal-dialog-scrollable .modal-body').forEach(anchor => {
     anchor.addEventListener('scroll', function(e){
-        var modal_scrollTop = $('.modal-dialog-scrollable .modal-body')[8].scrollTop;
-        var modal_scrollHeight = $('.modal-dialog-scrollable .modal-body')[8].scrollHeight;        
-        var modal_innerHeight = $('.modal-dialog-scrollable .modal-body')[8].offsetHeight;        
-
+        var modal_scrollTop = $('.modal-dialog-scrollable .modal-body')[9].scrollTop;
+        var modal_scrollHeight = $('.modal-dialog-scrollable .modal-body')[9].scrollHeight;        
+        var modal_innerHeight = $('.modal-dialog-scrollable .modal-body')[9].offsetHeight;        
+        
         if (modal_scrollTop + modal_innerHeight >= modal_scrollHeight) {
             document.querySelector('.scroll-shadow-bottom').style.display = 'none';
         } else if (modal_scrollTop + modal_innerHeight < modal_scrollHeight) {
