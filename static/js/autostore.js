@@ -50,7 +50,11 @@ input.addEventListener('keyup', function() {
     store = get_store(link);
     
     if (store != 'Unknown') {
+        var link_confirm_btn = document.getElementById('link-confirm-btn');
         document.getElementById('link-store-select').value = store;
-        document.getElementById('link-confirm-btn').disabled = false
+        link_confirm_btn.disabled = false
+        link_confirm_btn.focus()
+        link_confirm_btn.style.boxShadow = '0 0 0 0.2rem rgb(38 161 235 / 50%)';
+        link_confirm_btn.style.transition = "all .3s";
     }
 });

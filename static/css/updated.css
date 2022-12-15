@@ -1241,6 +1241,10 @@ option:disabled {
     font-size: 1.1rem;
 }
 
+#link-confirm-btn:not(:focus) {
+    box-shadow: none !important;
+}
+
 #snackbar {
     visibility: hidden;
     min-width: 250px;
@@ -1265,9 +1269,15 @@ option:disabled {
 }
 
 .pulse {
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 1);
 	transform: scale(1);
 	animation: pulse 2s infinite;
+}
+
+.pulse-single {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 1);
+	transform: scale(1);
+	animation: pulse-single 2s normal;
 }
 
 @-webkit-keyframes fadein {
@@ -1321,17 +1331,34 @@ option:disabled {
 @keyframes pulse {
 	0% {
 		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+		box-shadow: 0 0 0 0 rgba(0, 123, 255, .7);
 	}
 
 	70% {
 		transform: scale(1);
-		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+		box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
 	}
 
 	100% {
 		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+		box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+	}
+}
+
+@keyframes pulse-single {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 123, 255, .7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+	}
+
+	100% {
+		transform: scale(1);
+		box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
 	}
 }
 
