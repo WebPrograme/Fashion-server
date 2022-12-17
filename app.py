@@ -1220,9 +1220,13 @@ def get_link(number, storeName, zara_model_img_status):
         product_data = requests.get(f'https://shop.mango.com/services/garments/{number}', headers={"User-Agent": "Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0", "stock-id": "017.NL.0.true.false.v4"}).content
 
         product_data = json.loads(product_data)
-
         canonicalUrl = 'canonicalUrl'
-        return f'https://shop.mango.com{product_data[canonicalUrl]}?c={number[-2:]}'
+        
+        try:
+            temp = product_data[canonicalUrl]
+            return f'https://shop.mango.com{product_data[canonicalUrl]}?c={number[-2:]}'
+        except:       
+            return f'https://www.google.be/search?q={storeName}+{number}'
     elif storeName == 'Zara':
         if zara_model_img_status:
             return f'https://www.zara.com/be/nl/-p0{number}.html'

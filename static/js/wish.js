@@ -25,10 +25,14 @@ async function wish(event, value) {
             source.style.color = 'red'
             source.classList.add('fa-solid')        
             source.classList.toggle('wish-btn-icon-active')
+            await delay(450)
+            source.classList.remove('wish-btn-icon-active')
         } else {
             source.children[0].style.color = 'red'
             source.children[0].classList.add('fa-solid')
             source.children[0].classList.toggle('wish-btn-icon-active')
+            await delay(450)
+            source.children[0].classList.remove('wish-btn-icon-active')
         }
     } else {
         for (var j = 0; j < wishList.length; j++) {
