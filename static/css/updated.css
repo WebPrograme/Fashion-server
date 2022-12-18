@@ -422,7 +422,9 @@ img {
 }
 
 .upload-div{
-    border: 2px dashed #2a2d3a;
+    outline: 2px dashed #2a2d3a;
+    outline-offset: 0px;
+    transition: outline-offset 0.2s ease-in-out;
     border-radius: .35rem;
     z-index: 200;
 }
@@ -1243,6 +1245,11 @@ option:disabled {
 
 #link-confirm-btn:not(:focus) {
     box-shadow: none !important;
+}
+
+.upload-dragover {
+    outline-offset: -6px;
+    transition: outline-offset 0.2s ease-in-out;
 }
 
 #snackbar {
