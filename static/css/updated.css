@@ -1271,8 +1271,10 @@ option:disabled {
   
 #snackbar.show {
     visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 6.5s;
-    animation: fadein 0.5s, fadeout 0.5s 6.5s;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 6.5s, pulse-error 2s infinite;
+    animation: fadein 0.5s, fadeout 0.5s 6.5s, pulse-error 2s infinite;
+    box-shadow: 0 0 0 0 rgba(252, 66, 74, 1);
+	transform: scale(1);
 }
 
 .pulse {
@@ -1406,6 +1408,23 @@ option:disabled {
 	100% {
 		transform: scale(1);
 		box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+	}
+}
+
+@keyframes pulse-error {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(252, 66, 74, .7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(252, 66, 74, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(252, 66, 74, 0);
 	}
 }
 

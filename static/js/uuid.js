@@ -32,15 +32,18 @@ async function UserAgreed(e) {
 
 $(document).ready(function () {
     // Check if user saw the modal
-    var key = 'UserAgreed',
+    var userWelcome = localStorage.getItem('userWelcome');
         userChoice = localStorage.getItem('UserAgreed');
         UserID = localStorage.getItem('UserID');
     // Show the modal only if new user
     if (!userChoice) {
-        document.querySelector('.startupModalBody').innerHTML = `<video src="https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/Fashion%20recommender%203.mp4" autoplay muted loop id="myVideo"></video>`
-        $('#startupBackdrop').modal('show');
+        if (!userWelcome) {
+            document.querySelector('.startupModalBody').innerHTML = `<video src="https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/Fashion%20recommender%203.mp4" autoplay muted loop id="myVideo"></video>`
+            $('#startupBackdrop').modal('show');
+            localStorage.setItem('userWelcome', true);
+        }
         document.querySelector('.cookie').style.display = 'flex';
-    } else {      
+    } else {
         var myElements = document.querySelectorAll('.useridInput')
         for (let i = 0; i < myElements.length; i++) {
             myElements[i].value = UserID;

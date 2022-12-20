@@ -67,7 +67,7 @@
             {% endfor %}
             <script>
                 var x = document.getElementById("snackbar");
-                x.className = "show";
+                x.className = "show pulse-error";
                 setTimeout(function(){ x.className = x.className.replace("show", ""); }, 7000);
             </script>
         {% endif %}
@@ -84,7 +84,7 @@
                     <p>We use functional cookies and similar technologies that are necessary to operate this website. We don't use any third party cookies so your data stays protected. <i>All image rights reserved to the linked stores</i></p>
                     <div class="accordion" id="accordion" role="tablist">
                         <div class="card">
-                          <a onclick="document.getElementById('accordion-item-1-header-arrow').classList.toggle('accordion-header-arrow-flip')" data-bs-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3" class="card-header accordion-header justify-content-between" role="tab" id="heading-3">
+                          <a onclick="cookiesAccordion(1)" data-bs-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3" class="card-header accordion-header justify-content-between" role="tab" id="heading-3">
                             <h6 class="mb-0">
                               Functional cookies 
                             </h6>
@@ -92,12 +92,14 @@
                           </a>
                           <div id="collapse-3" class="collapse" role="tabpanel" aria-labelledby="heading-3" data-bs-parent="#accordion">
                             <div class="card-body"> 
-                                <p>We use Local Storage to run this website. In the Local Storage we save your unique id that will be made when you agree to our privacy policy (this and the above text). We also save here if you have agreed to the terms. Local Storage is saved on your device, NOT on the server.</p>
+                                <p>We use Local Storage to run this website. In the Local Storage we save your unique id that will be made when you agree to our privacy policy (this and the above text). We also save here if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices.</p>
+                                <p><strong>Fontawesome: </strong>we use Fontawesome for the icons on this website. For this to work, Fontawesome uses cookies.</p>
+                                <p><strong>Stores: </strong>by using pictures with the model some stores use cookies. These cookies are temporary.</p>
                             </div>
                           </div>
                         </div>
                         <div class="card">
-                            <a onclick="document.getElementById('accordion-item-2-header-arrow').classList.toggle('accordion-header-arrow-flip')" data-bs-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapseTwo" class="card-header accordion-header justify-content-between" role="tab" id="heading-2">
+                            <a onclick="cookiesAccordion(2)" data-bs-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapseTwo" class="card-header accordion-header justify-content-between" role="tab" id="heading-2">
                               <h6 class="mb-0">
                                 Your saved data 
                               </h6>
@@ -105,7 +107,8 @@
                             </a>
                             <div id="collapse-2" class="collapse" role="tabpanel" aria-labelledby="heading-2" data-bs-parent="#accordion">
                                 <div class="card-body"> 
-                                    <p>If you use this webiste and choose an input option, the image that you uploaded or that we extracted by the hand of your input (product number, product link or/and store) will be saved on the server with your unique id as name. The image can only be linked to your device because the unique id can only be saved on the user's device and NOT on the server.</p> 
+                                    <p>Like stated above, We use Local Storage to run this website. In the Local Storage we save your unique id that will be made when you agree to our privacy policy (this and the above text). We also save here if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices.</p>                                 </div>
+                                    <p>We don't save any personal data. This include your uploaded image or the other input data.</p>
                                 </div>
                             </div>
                         </div>
@@ -132,7 +135,7 @@
                     <p>We use functional cookies and similar technologies that are necessary to operate this website. We don't use any third party cookies so your data stays protected. <i>All image rights reserved to the linked stores</i></p>
                     <div class="accordion" id="accordion-privacy" role="tablist">
                         <div class="card">
-                          <a onclick="document.getElementById('accordion-privacy-item-1-header-arrow').classList.toggle('accordion-header-arrow-flip')" data-bs-toggle="collapse" href="#collapse-privacy-3" aria-expanded="false" aria-controls="collapse-privacy-3" class="card-header accordion-header justify-content-between" role="tab" id="heading-privacy-3">
+                          <a onclick="cookiesAccordion(1)" data-bs-toggle="collapse" href="#collapse-privacy-3" aria-expanded="false" aria-controls="collapse-privacy-3" class="card-header accordion-header justify-content-between" role="tab" id="heading-privacy-3">
                             <h6 class="mb-0">
                               Functional cookies 
                             </h6>
@@ -140,12 +143,14 @@
                           </a>
                           <div id="collapse-privacy-3" class="collapse" role="tabpanel" aria-labelledby="heading-privacy-3" data-bs-parent="#accordion-privacy">
                             <div class="card-body"> 
-                                <p>We use Local Storage to run this website. In the Local Storage we save your unique id that will be made when you agree to our privacy policy (this and the above text). We also save here if you have agreed to the terms. Local Storage is saved on your device, NOT on the server.</p>
+                                <p>We use Local Storage to run this website. In the Local Storage we save your unique id that will be made when you agree to our privacy policy (this and the above text). We also save here if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices.</p>
+                                <p><strong>Fontawesome: </strong>we use Fontawesome for the icons on this website. For this to work, Fontawesome uses cookies.</p>
+                                <p><strong>Stores: </strong>by using pictures with the model some stores use cookies. These cookies are temporary.</p>
                             </div>
                           </div>
                         </div>
                         <div class="card">
-                            <a onclick="document.getElementById('accordion-privacy-item-2-header-arrow').classList.toggle('accordion-header-arrow-flip')" data-bs-toggle="collapse" href="#collapse-privacy-2" aria-expanded="false" aria-controls="collapseTwo" class="card-header accordion-header justify-content-between" role="tab" id="heading-privacy-2">
+                            <a onclick="cookiesAccordion(2)" data-bs-toggle="collapse" href="#collapse-privacy-2" aria-expanded="false" aria-controls="collapseTwo" class="card-header accordion-header justify-content-between" role="tab" id="heading-privacy-2">
                               <h6 class="mb-0">
                                 Your saved data 
                               </h6>
@@ -153,7 +158,8 @@
                             </a>
                             <div id="collapse-privacy-2" class="collapse" role="tabpanel" aria-labelledby="heading-privacy-2" data-bs-parent="#accordion-privacy">
                                 <div class="card-body"> 
-                                    <p>If you use this webiste and choose an input option, the image that you uploaded or that we extracted by the hand of your input (product number, product link or/and store) will be saved on the server with your unique id as name. The image can only be linked to your device because the unique id can only be saved on the user's device and NOT on the server.</p> 
+                                    <p>Like stated above, We use Local Storage to run this website. In the Local Storage we save your unique id that will be made when you agree to our privacy policy (this and the above text). We also save here if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices.</p> 
+                                    <p>We don't save any personal data. This include your uploaded image or the other input data.</p>
                                 </div>
                             </div>
                         </div>
