@@ -680,7 +680,7 @@ input[type=number] {
 
 .readytogo-btn {
     z-index: 999; 
-    margin-top: .875rem;
+    margin-top: 18px;
 }
 
 .second-store-column {
