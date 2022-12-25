@@ -1208,12 +1208,15 @@ def get_link(number, storeName, zara_model_img_status):
         return f'https://www.pullandbear.com/be/en/-l0{number[:-3]}?cS={number[-3:]}'
     elif storeName == 'Bershka':
         product_data = requests.post(f'https://2kv2lbqg6e-dsn.algolia.net/1/indexes/pro_SEARCH_NL/query?', headers={"User-Agent": "Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0", "x-algolia-agen": "Algolia for JavaScript (3.35.1); Browser", "x-algolia-application-id": "2KV2LBQG6E", "x-algolia-api-key": "MGY4YzYzZWI2ZmRlYmYwOTM1ZGU2NGI3MjVjZjViMjgyMDIyYWM3NWEzZTM5ZjZiOWYwMzAyYThmNTkxMDUwMGF0dHJpYnV0ZXNUb0hpZ2hsaWdodD0lNUIlNUQmYXR0cmlidXRlc1RvU25pcHBldD0lNUIlNUQmZW5hYmxlUGVyc29uYWxpemF0aW9uPWZhbHNlJmVuYWJsZVJ1bGVzPXRydWUmZmFjZXRpbmdBZnRlckRpc3RpbmN0PXRydWUmZ2V0UmFua2luZ0luZm89dHJ1ZSZzbmlwcGV0RWxsaXBzaXNUZXh0PSVFMiU4MCVBNiZzdW1PckZpbHRlcnNTY29yZXM9dHJ1ZQ=="}, json={"query": number, "analyticsTags": ["dweb","country_nl","lang_nl","wmen","no_teen","season","store"], "clickAnalytics": "false", "hitsPerPage": "36", "ruleContexts": ["dweb","country_nl","lang_nl","wmen","wmen_nl"], "attributesToRetrieve": ["pElement"], "facets": ["mainCategory"], "filter":"", "page": "0"}).content
-
+                    
         try:
             product_id = json.loads(product_data)['hits'][0]['pElement']
-        except:
+            data = requests.get(f'https://www.bershka.com/itxrest/3/catalog/store/44009503/40259546/productsArray?productIds={product_id}%2C106465680%2C106185120%2C103578123%2C103646838&languageId=100', headers=headers).content
+
+            product_url = json.loads(data)['products'][0]['name'].replace(' ', '-')
+        except Exception as e:
             return f'https://www.bershka.com/nl/q/{number}'
-        return f'https://www.bershka.com/nl/-c0p{product_id}.html?colorId={number[-3:]}'
+        return f'https://www.bershka.com/nl/{product_url}-c0p{product_id}.html?colorId={number[-3:]}'
     elif storeName == 'New Yorker':
         return f'https://www.newyorker.de/nl/products/#/detail/{number}/001'
     elif storeName == 'Mango':
