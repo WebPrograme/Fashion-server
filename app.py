@@ -1623,16 +1623,17 @@ def upload(filename):
 #    model.initialize_model(False)
 #reset_status = args.reset
 
-app.secret_key = 'FR6545'
-app.config['SESSION_TYPE'] = 'APPLICATION'
 if __name__ == '__main__':
-    model.initialize_model(True)
-else:
-    model.initialize_model(False)
-    
-cors = CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True, allow_headers=['Access-Control-Allow-Origin'])
-app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
-print('Server started')
-app.run(host="0.0.0.0", threaded=True, port=5000)
+    app.secret_key = 'FR6545'
+    app.config['SESSION_TYPE'] = 'APPLICATION'
+    if __name__ == '__main__':
+        model.initialize_model(True)
+    else:
+        model.initialize_model(False)
+        
+    cors = CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True, allow_headers=['Access-Control-Allow-Origin'])
+    app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.ERROR)
+    print('Server started')
+    app.run(host="0.0.0.0", threaded=True, port=5000)
