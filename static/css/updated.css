@@ -1332,6 +1332,9 @@ option:disabled {
     display: flex;
     margin-top: auto;
     margin-bottom: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .top-bar a {
