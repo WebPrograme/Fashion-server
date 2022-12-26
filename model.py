@@ -60,9 +60,7 @@ def process(url, headers, pageNumber):
     return results
 
 def process_file(file, pageNumber):
-    global pick_store, product_status
-    img_files_list = pickle.loads(requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/img_filesWOMEN3.pkl').content)
-    features_list = pickle.loads(requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/image_features_embeddingWOMEN3.pkl').content)
+    global pick_store, product_status, img_files_list, features_list, model
     features = extract_img_features_from_file(file, model)
     img_distence, img_indicess = recommendd(features, features_list)
     results = []
