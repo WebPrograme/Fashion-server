@@ -1,3 +1,7 @@
+* {
+    transition: all 0.2s ease-in-out;
+}
+
 body.show {
     overflow-y: hidden;
     position: absolute;
@@ -1248,6 +1252,7 @@ option:disabled {
 }
 
 .upload-dragover {
+    outline: 2px solid #000;
     outline-offset: -6px;
     transition: outline-offset 0.2s ease-in-out;
 }
@@ -1376,12 +1381,23 @@ option:disabled {
     box-shadow: rgb(149 157 165 / 10%) 0px 8px 24px;
 }
 
-.form-step-option:hover, .form-step-option:focus, .form-step-option:active {
+.form-step-option:not(.form-step-option-disabled):hover, .form-step-option:not(.form-step-option-disabled):focus, .form-step-option:not(.form-step-option-disabled):active {
     background-color: #fff !important;
     color: #000 !important;
     box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
     scale: 1.05;
     transition: all .1s ease-in-out;
+}
+
+.form-step-option-disabled:hover, .form-step-option-disabled:focus, .form-step-option-disabled:active {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    box-shadow: rgb(149 157 165 / 10%) 0px 8px 24px;
+}
+
+.form-step-option-disabled:hover .invalid-tooltip, .form-step-option-disabled:focus .invalid-tooltip, .form-step-option-disabled:active .invalid-tooltip {
+    display: block;
 }
 
 .form-input-group {
@@ -1627,7 +1643,7 @@ ul.form-stepper li a .form-stepper-circle {
 }
 
 .form-step button:disabled {
-    background-color: rgb(14, 149, 149);
+    background-color: #0e9594;
     border-color: #0e9594;
 }
 

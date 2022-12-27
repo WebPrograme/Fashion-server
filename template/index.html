@@ -506,8 +506,10 @@
                                     <span class="form-stepper-circle">
                                         <span>1</span>
                                     </span>
-                                    <h3 class="label step-1-header label-header-gender">Gender</h3>
-                                    <h3 class="label label-change-gender">Change</h3>
+                                    <section class="animation">
+                                        <h3 class="label step-1-header label-header-gender">Gender</h3>
+                                        <h3 class="label label-change-gender">Change</h3>
+                                    </section>
                                 </a>
                             </li>
                             <!-- Step 2 -->
@@ -536,7 +538,10 @@
                         <section id="step-1" class="form-step">
                             <div class="row form-step-row">
                                 <a class="form-step-option btn btn-lg btn-primary form-btn-gender">Women</a>
-                                <a class="form-step-option btn btn-lg btn-primary form-btn-gender" disabled>Men</a>
+                                <a class="form-step-option btn btn-lg btn-primary form-step-option-disabled"><i class="fa-solid fa-lock"></i> Men
+                                    <div class="invalid-tooltip">
+                                        This feature is not available yet
+                                    </div></a>
                             </div>
                         </section>
                         <!-- Step 2 Content, default hidden on page load. -->
