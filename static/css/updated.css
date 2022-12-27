@@ -1379,6 +1379,7 @@ option:disabled {
     width: calc(50% - 1.5rem) !important;
     min-width: 220px;
     box-shadow: rgb(149 157 165 / 10%) 0px 8px 24px;
+    transition: all .2s ease-in-out;
 }
 
 .form-step-option:not(.form-step-option-disabled):hover, .form-step-option:not(.form-step-option-disabled):focus, .form-step-option:not(.form-step-option-disabled):active {
@@ -1386,7 +1387,6 @@ option:disabled {
     color: #000 !important;
     box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
     scale: 1.05;
-    transition: all .1s ease-in-out;
 }
 
 .form-step-option-disabled:hover, .form-step-option-disabled:focus, .form-step-option-disabled:active {
