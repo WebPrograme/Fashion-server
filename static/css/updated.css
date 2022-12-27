@@ -143,7 +143,7 @@ body.show {
 }
 
 .form-check-input:checked .form-check-muted.form-check label input[type="checkbox"]:checked + .input-helper:before, .form-check-muted.form-check label input[type="radio"]:checked + .input-helper:before {
-    background: #0090e7;
+    background: rgba(0, 123, 255, 1);
 }
 
 .battle__card__submit__btn {
@@ -160,7 +160,7 @@ body.show {
 }
 
 .loader {
-    color: #0090e7;
+    color: rgba(0, 123, 255, 1);
     width: 55px;
     height: 55px;
     display: flex;
@@ -336,7 +336,7 @@ img {
 .toggle {
     position: absolute;
     width: 50%;
-    background-color: #0090e7;
+    background-color: rgba(0, 123, 255, 1);
     box-shadow: 0 2px 15px rgba(0,0,0,.15);
     transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -376,12 +376,12 @@ img {
 /* Toggle */
 #gender-switch[type="checkbox"]:checked + .content-wrapper .toggle{
     transform: translateX(100%);
-    background-color: #0090e7;
+    background-color: rgba(0, 123, 255, 1);
 }
 
 .toggle-checked {
     transform: translateX(100%);
-    background-color: #0090e7;
+    background-color: rgba(0, 123, 255, 1);
 }
 
 #gender-switch[type="checkbox"]:checked + .content-wrapper .light{
@@ -431,9 +431,9 @@ img {
 
 .upload-div p{
     width: 100%;
-    height: 100%;
+    height: 240px;
     text-align: center;
-    line-height: 313px;
+    line-height: 213px;
     color: #6c7293;
     font-family: Arial;
     font-size: 18px;
@@ -444,7 +444,7 @@ img {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 350px;
+    height: 240px;
     outline: none;
     opacity: 0;
 }
@@ -670,7 +670,7 @@ input[type=number] {
 .line {
     height: 2px;
     width: 100%;
-    max-width: 39rem;
+    max-width: 44rem;
     background: #000;
     position: relative;
     top: -35px;
@@ -713,7 +713,7 @@ input[type=number] {
     font-size: 1rem;
     z-index: 9;
     position: relative;
-    background: #fff;
+    background: #f2f3f5;
     color:#00000087 !important;
     display: inline-block;
     padding: 0 14px;
@@ -1236,7 +1236,7 @@ option:disabled {
 .cookie .accept {
     display: flex;
     margin-top: auto;
-    background-color: #0090e7;
+    background-color: rgba(0, 123, 255, 1);
     color: #fff !important;
     border-radius: .35rem;
     align-self: center;
@@ -1291,7 +1291,7 @@ option:disabled {
 
 .loader-path {
     fill: none;
-    stroke: #0090e7;
+    stroke: rgba(0, 123, 255, 1);
     stroke-width: 0.25em;
     stroke-linecap: round;
 }
@@ -1353,6 +1353,282 @@ option:disabled {
 .top-bar-visible .top-bar {
     top: 12px;
     transition: all .2s ease-in-out;
+}
+
+#multi-step-form-container {
+    margin-top: 2.5rem;
+}
+
+.form-step-row {
+    justify-content: center;
+}
+
+.form-step-option {
+    margin: 0.75rem;
+    width: max-content;
+    background-color: #fff;
+    font-weight: 500;
+    font-size: 0.875rem;
+    border: none !important;
+    color: #000 !important;
+    width: calc(50% - 1.5rem) !important;
+    min-width: 220px;
+    box-shadow: rgb(149 157 165 / 10%) 0px 8px 24px;
+}
+
+.form-step-option:hover, .form-step-option:focus, .form-step-option:active {
+    background-color: #fff !important;
+    color: #000 !important;
+    box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    scale: 1.05;
+    transition: all .1s ease-in-out;
+}
+
+.form-input-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-input-group .input-group {
+    width: calc(50% - 1rem);
+    min-width: 214px;
+}
+
+.form-input-group:nth-child(0) {
+    margin-left: 0;
+}
+
+.form-input-group:nth-child(1) {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 616px) {
+    .form-step-option {
+        width: 100% !important;
+    }
+
+    .form-input-group .input-group {
+        width: 100%;
+    }
+
+    .form-input-group p {
+        width: 1px;
+    }
+}
+
+.mt-3 {
+    margin-top: 2rem;
+}
+
+.d-none {
+    display: none;
+}
+
+.form-step {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.font-normal {
+    font-weight: normal;
+}
+
+.form-stepper * {
+    transition: all 0.3s ease-in-out;
+}
+
+ul.form-stepper {
+    counter-reset: section;
+    margin-bottom: 2rem;
+}
+
+ul.form-stepper .form-stepper-circle {
+    position: relative;
+}
+
+ul.form-stepper .form-stepper-circle span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.form-stepper-horizontal {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+ul.form-stepper > li:not(:last-of-type) {
+    margin-bottom: 0.625rem;
+    -webkit-transition: margin-bottom 0.4s;
+    -o-transition: margin-bottom 0.4s;
+    transition: margin-bottom 0.4s;
+}
+.form-stepper-horizontal > li:not(:last-of-type) {
+    margin-bottom: 0 !important;
+}
+
+.form-stepper-horizontal li {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.form-stepper-horizontal li:not(:last-child):after {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    height: 2px;
+    content: "";
+    top: calc(32% - .5px);
+    width: 100%;
+}
+
+.form-stepper-horizontal li:after {
+    background-color: #fff;
+}
+
+.form-stepper-horizontal li.form-stepper-completed:after {
+    background-color: rgba(0, 123, 255, 1);
+}
+
+.form-stepper-horizontal li:last-child {
+    flex: unset;
+}
+
+ul.form-stepper li a .form-stepper-circle {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 0;
+    line-height: 1.7rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.38);
+    border-radius: 50%;
+}
+
+.form-stepper .form-stepper-active .form-stepper-circle {
+    background-color: rgba(0, 123, 255, 1) !important;
+    color: #fff;
+    box-shadow: 0 0 0 7px rgba(0, 123, 255, .3);
+}
+
+.form-stepper .form-stepper-active .label {
+    color: rgba(0, 123, 255, 1) !important;
+}
+
+.form-stepper .form-stepper-active .form-stepper-circle:hover {
+    background-color: #4361ee !important;
+    color: #fff !important;
+}
+
+.form-stepper .form-stepper-unfinished .form-stepper-circle {
+    background-color: #fff;
+}
+
+.form-stepper .form-stepper-completed a:hover {
+    cursor: pointer;
+}
+
+.form-stepper .form-stepper-completed .form-stepper-circle {
+    background-color: rgba(0, 123, 255, 1) !important;
+    color: #fff;
+}
+
+.form-stepper .form-stepper-completed .label {
+    color: rgba(0, 123, 255, 1) !important;
+}
+
+.form-stepper .form-stepper-completed .form-stepper-circle:hover {
+    background-color: rgba(0, 123, 255, 1) !important;
+    color: #fff !important;
+}
+
+.form-stepper .form-stepper-active span.text-muted {
+    color: #fff !important;
+}
+
+.form-stepper .form-stepper-completed span.text-muted {
+    color: #fff !important;
+}
+
+.form-stepper .label {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.form-stepper a {
+    cursor: default;
+    min-width: 66px;
+}
+
+.form-stepper a:hover {
+    text-decoration: none;
+}
+
+.form-stepper-circle span {
+    font-weight: 500;
+}
+
+.label-change-gender, .label-change-type, .label-change-input {
+    display: none;
+}
+
+.form-stepper .form-stepper-completed .form-step-gender:hover .label-change-gender {
+    display: block;
+}
+
+.form-stepper .form-stepper-completed .form-step-gender:hover .label-header-gender {
+    display: none;
+}
+
+.form-stepper .form-stepper-completed .form-step-type:hover .label-change-type {
+    display: block;
+}
+
+.form-stepper .form-stepper-completed .form-step-type:hover .label-header-type {
+    display: none;
+}
+
+.form-stepper .form-stepper-completed .form-step-input:hover .label-change-input {
+    display: block;
+}
+
+.form-stepper .form-stepper-completed .form-step-input:hover .label-header-input {
+    display: none;
+}
+
+.form-step .card {
+    border: none;
+    box-shadow: rgb(149 157 165 / 10%) 0px 8px 24px;
+}
+
+.form-step .card-body {
+    padding: 1.3rem;
+}
+
+.form-step button {
+    margin-top: 1.3rem;
+    box-shadow: rgb(149 157 165 / 10%) 0px 8px 24px;
+}
+
+.form-step button:disabled {
+    background-color: rgb(14, 149, 149);
+    border-color: #0e9594;
 }
 
 @keyframes rotate {
