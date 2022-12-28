@@ -11972,7 +11972,7 @@ textarea.is-valid.tt-hint {
   color: #dc3545;
 }
 
-.invalid-tooltip {
+.invalid-tooltip, .form-btn-input-tooltip {
   position: absolute;
   top: auto;
   left: auto;
@@ -12333,7 +12333,7 @@ fieldset:disabled .wizard>.actions a,
 .wizard>.actions a:hover {
   color: #fff;
   background-color: #0090e7;
-  border-color: #0070b4;
+  border-color: #0090e7;
 }
 
 .btn-primary:focus,
@@ -12342,7 +12342,7 @@ fieldset:disabled .wizard>.actions a,
 .wizard>.actions a.focus {
   color: #fff;
   background-color: #0090e7;
-  border-color: #0070b4;
+  border-color: #0090e7;
   box-shadow: 0 0 0 0.2rem rgba(38, 161, 235, 0.5);
 }
 

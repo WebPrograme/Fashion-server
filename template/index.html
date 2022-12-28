@@ -257,6 +257,7 @@
                     <p type="button" data-bs-dismiss="modal">Close</p>
                 </div>
                 <div class="modal-body">
+                    <p><strong>A Ready2Go image: </strong>use a image provided by use to use as input.</p>
                     <p><strong>Your own image: </strong>use your own image of a clothing piece (the image will not be
                         saved!). We recommend to use a white or natural background and <strong class="modal-text-danger">NEVER UPLOAD AN IMAGE WHERE THERE IS A PERSON IN</strong>.</p>
                     <div class="row">
@@ -541,17 +542,18 @@
                                 <a class="form-step-option btn btn-lg btn-primary form-step-option-disabled"><i class="fa-solid fa-lock"></i> Men
                                     <div class="invalid-tooltip">
                                         This feature is not available yet
-                                    </div></a>
+                                    </div>
+                                </a>
                             </div>
                         </section>
                         <!-- Step 2 Content, default hidden on page load. -->
                         <section id="step-2" class="form-step d-none">
                             <div class="row form-step-row">
-                                <div class="form-step-option btn btn-lg btn-primary form-btn-type"><i class="fa-regular fa-image"></i> Image</div>
-                                <div class="form-step-option btn btn-lg btn-primary form-btn-type"><i class="fa-solid fa-link"></i> Link</div>
+                                <div class="form-step-option btn btn-lg btn-primary form-btn-type"><div><i class="fa-regular fa-image"></i> Image</div> <span class="material-symbols-outlined tooltip-icon help-icon" data-bs-toggle="modal" data-bs-target="#uploadBackdrop">help</span></div>
+                                <div class="form-step-option btn btn-lg btn-primary form-btn-type"><div><i class="fa-solid fa-link"></i> Link</div> <span class="material-symbols-outlined tooltip-icon help-icon" data-bs-toggle="modal" data-bs-target="#linkBackdrop">help</span></div>
                             </div>
                             <div class="row form-step-row">
-                                <div class="form-step-option btn btn-lg btn-primary form-btn-type"><i class="fa-solid fa-hashtag"></i> Number</div>
+                                <div class="form-step-option btn btn-lg btn-primary form-btn-type"><div><i class="fa-solid fa-hashtag"></i> Number</div> <span class="material-symbols-outlined tooltip-icon help-icon" data-bs-toggle="modal" data-bs-target="#numberBackdrop">help</span></div>
                             </div>
                         </section>
                         <!-- Step 3 Link. -->
@@ -608,7 +610,11 @@
                             </div>
     
                             <button type="submit" value="Submit" name="BtnSubmit" class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn submit-btn"
-                                onclick="loading('processing');" id="link-confirm-btn" disabled>CONTINUE</button>
+                                onclick="loading('processing');" id="link-confirm-btn" disabled>CONTINUE
+                                <div class="form-btn-input-tooltip">
+                                    Fill in all the fields
+                                </div>
+                            </button>
                         </section>
                         <!-- Step 4 Number. -->
                         <section id="step-4" class="form-step d-none">
@@ -659,7 +665,11 @@
                             </div>
     
                             <button type="submit" value="Submit" name="BtnSubmit" class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn submit-btn"
-                                onclick="loading('processing');" id="number-confirm-btn" disabled>CONTINUE</button>
+                                onclick="loading('processing');" id="number-confirm-btn" disabled>CONTINUE
+                                <div class="form-btn-input-tooltip">
+                                    Fill in all the fields
+                                </div>
+                            </button>
                         </section>
                         <!-- Step 5 Image. -->
                         <section id="step-5" class="form-step d-none">

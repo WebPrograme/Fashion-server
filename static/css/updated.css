@@ -1248,7 +1248,7 @@ option:disabled {
 }
 
 #link-confirm-btn:not(:focus) {
-    box-shadow: none !important;
+    box-shadow: rgb(149 157 165 / 10%) 0px 8px 24px !important;
 }
 
 .upload-dragover {
@@ -1360,6 +1360,17 @@ option:disabled {
     transition: all .2s ease-in-out;
 }
 
+.results-large .card, .results-small .card, .input-card .card {
+    border: none;
+    box-shadow: rgb(149 157 165 / 10%) 0px 8px 24px;
+}
+
+.results-large .card:hover, .results-small .card:hover {
+    box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    scale: 1.02;
+    transition: all .2s ease-in-out;
+}
+
 #multi-step-form-container {
     margin-top: 2.5rem;
 }
@@ -1373,7 +1384,7 @@ option:disabled {
     width: max-content;
     background-color: #fff;
     font-weight: 500;
-    font-size: 0.875rem;
+    font-size: 1rem !important;
     border: none !important;
     color: #000 !important;
     width: calc(50% - 1.5rem) !important;
@@ -1398,6 +1409,15 @@ option:disabled {
 
 .form-step-option-disabled:hover .invalid-tooltip, .form-step-option-disabled:focus .invalid-tooltip, .form-step-option-disabled:active .invalid-tooltip {
     display: block;
+}
+
+.form-btn-type {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-btn-type .help-icon {
+    padding-top: 2px;
 }
 
 .form-input-group {
@@ -1639,12 +1659,11 @@ ul.form-stepper li a .form-stepper-circle {
 
 .form-step button {
     margin-top: 1.3rem;
-    box-shadow: rgb(149 157 165 / 10%) 0px 8px 24px;
 }
 
-.form-step button:disabled {
-    background-color: #0e9594;
-    border-color: #0e9594;
+.form-step button:disabled:hover .form-btn-input-tooltip {
+    display: flex;
+    left: calc(50% - 67.5px);
 }
 
 @keyframes rotate {

@@ -162,19 +162,26 @@ document.querySelectorAll('.form-btn-gender').forEach((formBtnGender) => {
 });
 
 document.querySelectorAll('.form-btn-type').forEach((formBtnType) => {
-    formBtnType.addEventListener('click', () => {
-        const type = formBtnType.innerHTML;
-
-        if (type.includes('Link')) {
-            navigateToFormStep(3);
-            document.querySelector('.step-2-header').innerHTML = 'Link';
-        } else if (type.includes('Number')) {
-            navigateToFormStep(4);
-            document.querySelector('.step-2-header').innerHTML = 'Number';
-        } else if (type.includes('Image')) {
-            navigateToFormStep(5);
-            document.querySelector('.step-2-header').innerHTML = 'Image';
+    formBtnType.addEventListener('click', (e) => {
+        if (e.target.nodeName === 'DIV') {
+            const type = formBtnType.innerHTML;
+    
+            if (type.includes('Link')) {
+                navigateToFormStep(3);
+                document.querySelector('.step-2-header').innerHTML = 'Link';
+            } else if (type.includes('Number')) {
+                navigateToFormStep(4);
+                document.querySelector('.step-2-header').innerHTML = 'Number';
+            } else if (type.includes('Image')) {
+                navigateToFormStep(5);
+                document.querySelector('.step-2-header').innerHTML = 'Image';
+            }
         }
+    });
+});
+
+document.querySelectorAll('.form-btn-type').forEach((formBtnInputType) => {
+    formBtnInputType.addEventListener('click', (e) => {
     });
 });
 

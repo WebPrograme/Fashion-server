@@ -54,7 +54,7 @@ input.addEventListener('keyup', function() {
         document.getElementById('link-store-select').value = store;
         link_confirm_btn.disabled = false
         link_confirm_btn.focus()
-        link_confirm_btn.style.boxShadow = '0 0 0 0.2rem rgb(38 161 235 / 50%)';
+        link_confirm_btn.style.boxShadow = '0 0 0 0.3rem rgb(38 161 235 / 50%)';
         link_confirm_btn.style.transition = "all .3s";
     }
 });
