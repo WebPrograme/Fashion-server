@@ -209,7 +209,7 @@
                                             id="owl-carousel-basic">
                                             <div class="owl-stage-outer">
                                                 <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="sliderNext()">
+                                                    <div class="owl-item" onmouseover="showProduct(1)">
                                                         <div class="item">
                                                             {% if product_store_1  == 'NONE' %}
                                                                 <img src="{{ url_for('static', filename=product_model_img_1) }}" alt="No image is available">
@@ -218,7 +218,7 @@
                                                             {% endif %}
                                                         </div>
                                                     </div>
-                                                    <div class="owl-item" onmouseout="sliderPrev()">
+                                                    <div class="owl-item" onmouseout="showModel(1)">
                                                         <div class="item">
                                                             <img src="{{ product_img_1 }}" alt="No image is available">
                                                         </div>
@@ -269,7 +269,7 @@
                                             id="owl-carousel-basic-3">
                                             <div class="owl-stage-outer">
                                                 <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="sliderNext3()">
+                                                    <div class="owl-item" onmouseover="showProduct(3)">
                                                         <div class="item">
                                                             {% if product_store_3  == 'NONE' %}
                                                                 <img src="{{ url_for('static', filename=product_model_img_3) }}" alt="No image is available">
@@ -278,7 +278,7 @@
                                                             {% endif %}
                                                         </div>
                                                     </div>
-                                                    <div class="owl-item" onmouseout="sliderPrev3()">
+                                                    <div class="owl-item" onmouseout="showModel(3)">
                                                         <div class="item">
                                                             <img src="{{ product_img_3 }}" alt="No image is available">
                                                         </div>
@@ -329,7 +329,7 @@
                                             id="owl-carousel-basic-5">
                                             <div class="owl-stage-outer">
                                                 <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="sliderNext5()">
+                                                    <div class="owl-item" onmouseover="showProduct(5)">
                                                         <div class="item">
                                                             {% if product_store_5  == 'NONE' %}
                                                                 <img src="{{ url_for('static', filename=product_model_img_5) }}" alt="No image is available">
@@ -338,7 +338,7 @@
                                                             {% endif %}
                                                         </div>
                                                     </div>
-                                                    <div class="owl-item" onmouseout="sliderPrev5()">
+                                                    <div class="owl-item" onmouseout="showModel(5)">
                                                         <div class="item">
                                                             <img src="{{ product_img_5 }}" alt="No image is available">
                                                         </div>
@@ -389,7 +389,7 @@
                                             id="owl-carousel-basic-7">
                                             <div class="owl-stage-outer">
                                                 <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="sliderNext7()">
+                                                    <div class="owl-item" onmouseover="showProduct(7)">
                                                         <div class="item">
                                                             {% if product_store_7  == 'NONE' %}
                                                                 <img src="{{ url_for('static', filename=product_model_img_7) }}" alt="No image is available">
@@ -398,7 +398,7 @@
                                                             {% endif %}
                                                         </div>
                                                     </div>
-                                                    <div class="owl-item" onmouseout="sliderPrev7()">
+                                                    <div class="owl-item" onmouseout="showModel(7)">
                                                         <div class="item">
                                                             <img src="{{ product_img_7 }}" alt="No image is available">
                                                         </div>
@@ -449,7 +449,7 @@
                                             id="owl-carousel-basic-9">
                                             <div class="owl-stage-outer">
                                                 <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="sliderNext9()">
+                                                    <div class="owl-item" onmouseover="showProduct(9)">
                                                         <div class="item">
                                                             {% if product_store_9  == 'NONE' %}
                                                                 <img src="{{ url_for('static', filename=product_model_img_9) }}" alt="No image is available">
@@ -458,7 +458,7 @@
                                                             {% endif %}
                                                         </div>
                                                     </div>
-                                                    <div class="owl-item" onmouseout="sliderPrev9()">
+                                                    <div class="owl-item" onmouseout="showModel(9)">
                                                         <div class="item">
                                                             <img src="{{ product_img_9 }}" alt="No image is available">
                                                         </div>
@@ -511,7 +511,7 @@
                                             id="owl-carousel-basic-2">
                                             <div class="owl-stage-outer">
                                                 <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="sliderNext2()">
+                                                    <div class="owl-item" onmouseover="showProduct(2)">
                                                         <div class="item">
                                                             {% if product_store_2  == 'NONE' %}
                                                                 <img src="{{ url_for('static', filename=product_model_img_2) }}" alt="No image is available">
@@ -520,7 +520,7 @@
                                                             {% endif %}
                                                         </div>
                                                     </div>
-                                                    <div class="owl-item" onmouseout="sliderPrev2()">
+                                                    <div class="owl-item" onmouseout="showModel(2)">
                                                         <div class="item">
                                                             <img src="{{ product_img_2 }}" alt="No image is available">
                                                         </div>
@@ -571,7 +571,7 @@
                                             id="owl-carousel-basic-4">
                                             <div class="owl-stage-outer">
                                                 <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="sliderNext4()">
+                                                    <div class="owl-item" onmouseover="showProduct(4)">
                                                         <div class="item">
                                                             {% if product_store_4  == 'NONE' %}
                                                                 <img src="{{ url_for('static', filename=product_model_img_4) }}" alt="No image is available">
@@ -580,7 +580,7 @@
                                                             {% endif %}
                                                         </div>
                                                     </div>
-                                                    <div class="owl-item" onmouseout="sliderPrev4()">
+                                                    <div class="owl-item" onmouseout="showModel(4)">
                                                         <div class="item">
                                                             <img src="{{ product_img_4 }}" alt="No image is available">
                                                         </div>
@@ -631,7 +631,7 @@
                                             id="owl-carousel-basic-6">
                                             <div class="owl-stage-outer">
                                                 <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="sliderNext6()">
+                                                    <div class="owl-item" onmouseover="showProduct(6)">
                                                         <div class="item">
                                                             {% if product_store_6  == 'NONE' %}
                                                                 <img src="{{ url_for('static', filename=product_model_img_6) }}" alt="No image is available">
@@ -640,7 +640,7 @@
                                                             {% endif %}
                                                         </div>
                                                     </div>
-                                                    <div class="owl-item" onmouseout="sliderPrev6()">
+                                                    <div class="owl-item" onmouseout="showModel(6)">
                                                         <div class="item">
                                                             <img src="{{ product_img_6 }}" alt="No image is available">
                                                         </div>
@@ -691,7 +691,7 @@
                                             id="owl-carousel-basic-8">
                                             <div class="owl-stage-outer">
                                                 <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="sliderNext8()">
+                                                    <div class="owl-item" onmouseover="showProduct(8)">
                                                         <div class="item">
                                                             {% if product_store_8  == 'NONE' %}
                                                                 <img src="{{ url_for('static', filename=product_model_img_8) }}" alt="No image is available">
@@ -700,7 +700,7 @@
                                                             {% endif %}
                                                         </div>
                                                     </div>
-                                                    <div class="owl-item" onmouseout="sliderPrev8()">
+                                                    <div class="owl-item" onmouseout="showModel(8)">
                                                         <div class="item">
                                                             <img src="{{ product_img_8 }}" alt="No image is available">
                                                         </div>
@@ -751,7 +751,7 @@
                                             id="owl-carousel-basic-10">
                                             <div class="owl-stage-outer">
                                                 <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="sliderNext10()">
+                                                    <div class="owl-item" onmouseover="showProduct(10)">
                                                         <div class="item">
                                                             {% if product_store_10  == 'NONE' %}
                                                                 <img src="{{ url_for('static', filename=product_model_img_10) }}" alt="No image is available">
@@ -760,7 +760,7 @@
                                                             {% endif %}
                                                         </div>
                                                     </div>
-                                                    <div class="owl-item" onmouseout="sliderPrev10()">
+                                                    <div class="owl-item" onmouseout="showModel(10)">
                                                         <div class="item">
                                                             <img src="{{ product_img_10 }}" alt="No image is available">
                                                         </div>
