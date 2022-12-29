@@ -1393,6 +1393,10 @@ option:disabled {
     transition: all .2s ease-in-out;
 }
 
+.form-step-option i, .wish-btn i {
+    margin-left: 0;
+}
+
 .form-step-option:not(.form-step-option-disabled):hover, .form-step-option:not(.form-step-option-disabled):focus, .form-step-option:not(.form-step-option-disabled):active {
     background-color: #fff !important;
     color: #000 !important;
