@@ -1,3 +1,4 @@
+// Description: This script is used to update the gender (THIS SCRIPT IS NOT USED ANYMORE)
 gender_status = false
 
 function updateGender() {

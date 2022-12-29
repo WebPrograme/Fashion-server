@@ -1,3 +1,5 @@
+// Description: This script is used to submit the form when the user clicks on a ready2go card and to show the modal effects when the user scrolls the modal body
+// This is used to submit the form when the user clicks on a ready2go card
 document.querySelectorAll('.ready2go-card').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         loading('processing');
@@ -6,6 +8,7 @@ document.querySelectorAll('.ready2go-card').forEach(anchor => {
     });
 });
 
+// This is used to show the modal effects when the user scrolls the modal body
 document.querySelectorAll('.modal-dialog-scrollable .modal-body').forEach(anchor => {
     anchor.addEventListener('scroll', function(e){
         var modal_body = $('.modal-dialog-scrollable .modal-body')[9];

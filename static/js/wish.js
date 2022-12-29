@@ -1,11 +1,14 @@
+// Description: This file contains the functions for the "Wish" feature.
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
+// This function is used to add or remove an item from the wishlist
 async function wish(event, value) {
     event.preventDefault()
     value = value.split(' ')
     
+    // Get the necessary variables
     var source = event.target || event.srcElement;
     var store = value[0]
     var number = value[1]
@@ -15,7 +18,7 @@ async function wish(event, value) {
     var wishList = localStorage.getItem('wishList')
     wishList = JSON.parse(wishList)
 
-    
+    // If the wishlist is empty, create and add the item to the wishlist
     if (wishList == null || wishList.length == 0) {
         wishList = []
         wishList.push(itemSet)
@@ -34,8 +37,9 @@ async function wish(event, value) {
             await delay(450)
             source.children[0].classList.remove('wish-btn-icon-active')
         }
-    } else {
+    } else { // If the wishlist is not empty, check if the item is already in the wishlist and add or remove it
         for (var j = 0; j < wishList.length; j++) {
+            // If the item is already in the wishlist, remove it
             if (wishList[j][0] == store && wishList[j][1] == number && wishList[j][2] == link && wishList[j][3] == imgPath) {
                 if (source.nodeName && source.nodeName.toLowerCase() === 'i') {
                     source.style.color = '#000'
@@ -50,6 +54,8 @@ async function wish(event, value) {
                 return
             }
         }
+
+
         wishList.push(itemSet)
         localStorage.setItem('wishList', JSON.stringify(wishList))
 
@@ -69,6 +75,7 @@ async function wish(event, value) {
     }
 }
 
+// This function is used to remove an item from the wishlist
 function removeWish(event, index) {
     event.preventDefault()
     var wishList = localStorage.getItem('wishList')
@@ -78,6 +85,7 @@ function removeWish(event, index) {
     location.reload()
 }
 
+// This is used to change the wishlist icon color when the item is already in the wishlist, when the page is loaded
 var wishList = localStorage.getItem('wishList')
 wishList = JSON.parse(wishList)
 var btnPicker = document.querySelectorAll('.btn-picker')

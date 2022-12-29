@@ -1,11 +1,17 @@
+# Description: Main file for the web app
+# Author: Yarne Gooris (WebPrograme)
+
+# Importing modules
+# Standard modules
 import datetime
 import json
 import logging
 import os
 import random
 from argparse import ArgumentParser
+from base64 import b64decode, b64encode
 
-import click
+# Third party modules
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, flash, redirect, render_template, request, send_from_directory, url_for
@@ -13,21 +19,27 @@ from flask_cors import CORS, cross_origin
 from PIL import Image
 from rich.console import Console
 from werkzeug.middleware.proxy_fix import ProxyFix
-from base64 import b64encode, b64decode
 
+# Import the model file
 import model
 
+# Initialize the Flask app
 app = Flask('Fashion recommender', template_folder='template')
 app.wsgi_app = ProxyFix(
     app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
 )
 dev_status = False
+
+# Initialize the log and error console
 console = Console()
 error_console = Console(stderr=True, style="bold red")
 
+# Initialize needed variables
 temp_list = []
 ready2go_results_list = []
 last_index = 0
+
+# Get the ready2go results and parse them
 ready2go_results = requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/data/ready2go_results.txt').content
 ready2go_results = ready2go_results.decode('utf-8')
 
@@ -44,9 +56,11 @@ for i in temp_list:
         a[0] = a[0].replace('] \n', '')
     ready2go_results_list.append(a)
 
+# Get the express color list
 express_color_list_file = requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/data/express_color_list.json').content
 express_color_list = json.loads(express_color_list_file)['colors']
 
+# Initialize the standard headers
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36', 
            "Upgrade-Insecure-Requests": "1", 
            "DNT": "1",
@@ -54,6 +68,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36
            "Accept-Language": "en-US,en;q=0.5",
            "Accept-Encoding": "gzip, deflate"}
 
+# Initialize all the available Ready2Go items
 forselectedItems = ['fashion_bershka//women\\0581666603.webp',
                     'fashion_bershka//women\\0847810920.webp',
                     'fashion_bershka//women\\1305354615.webp',
@@ -220,6 +235,7 @@ forselectedItems = ['fashion_bershka//women\\0581666603.webp',
 
 @app.route('/', defaults={'page': 'index'})
 @app.route('/')
+# This function is called when the user visits the home page
 def home():
     picked_items =  random.sample(range(len(forselectedItems)), 20)
     results = [forselectedItems[i] for i in picked_items]
@@ -280,34 +296,43 @@ def home():
     
     return render_template('index.html',len=len(product_img), product_img=product_img, product_number=product_numbers, product_store=stores, product_link=product_links)          
 
+# Used to handle errors
 class errorhandler(Exception):
+    # This function is called when a 400 error occurs
     @app.errorhandler(400)
     def page_not_found(e):
         return render_template('error/400.html'), 400
     
+    # This function is called when a 404 error occurs
     @app.errorhandler(404)
     def page_not_found(e):
         return render_template('error/404.html'), 404
 
+    # This function is called when a 500 error occurs
     @app.errorhandler(500)
     def page_not_found(e):
         return render_template('error/500.html'), 500
 
+# Used to handle the terminal
 class terminal():
+    # Used to log a event/message
     def log(message):
         try:
             console.log(message)
         except Exception as e:
             terminal.error(e)
         
+    # Used to log a error
     def error(message):
         error_console.log(message)
 
+# Used to extract the image from given input
 class extract_img():
     def __init__(self, userID, headers):
         self.headers = headers
         self.userID = userID
     
+    # Used to extract the image from a given number and store
     def extract_img_from_number(number, store, userID, gender):
         global headers
         
@@ -449,6 +474,7 @@ class extract_img():
 
             return f'https://img.hollisterco.com/is/image/anf/{product_img_id}_prod1?policy=product-large', headers
         
+    # Used to extract the image from a given link and store
     def extract_img_from_link(number, store):
         global headers
         if not 'https://' in number:
@@ -718,7 +744,8 @@ class extract_img():
             if r.headers["content-type"] in image_formats:
                 return number, headers
             return None, None
-                                      
+                 
+# Used to get the model image of a product (only contains functions for available stores)
 class get_model_image():
     def hm(number):
         page = requests.get(f"https://www2.hm.com/nl_be/productpage.{number}.html", headers=headers).content
@@ -828,7 +855,9 @@ class get_model_image():
     def riverisland(number):
         return f'https://images.riverisland.com/is/image/RiverIsland/_{number}_main?$ProductImagePortraitLarge$'
 
+# Used to switch between pages
 class switch_page():
+    # Used to switch to the first page (THIS IS NOT USED ANYMORE, ALERNATIVE IS USED INSTEAD)
     @app.route('/predict/1', methods=['POST', 'GET'])
     def prev_page():
         process_with_image = False
@@ -884,6 +913,7 @@ class switch_page():
             flash('Something went wrong, please try again!')
             return redirect('/')
         
+    # Used to switch to the second page of the prediction
     @app.route('/predict/2', methods=['POST', 'GET'])
     def next_page():
         process_with_image = False
@@ -938,7 +968,9 @@ class switch_page():
             flash('Something went wrong, please try again!')
             return redirect('/')
 
+# Used for the extension
 class extension():
+    # Used to show the results from the extension input
     @app.route('/extension', methods=['POST', 'GET'])
     @cross_origin(origin='*',headers=['Content- Type','Authorization'])
     def open_extension():
@@ -962,6 +994,7 @@ class extension():
                 flash('Something went wrong, please try again!')
                 return redirect('/')
             
+    # Used to extract the image from the extension input and return the image
     @app.route('/extensioninput', methods=['POST', 'GET'])
     @cross_origin(origin='*',headers=['Content- Type','Authorization'])
     def input_extension():
@@ -975,7 +1008,9 @@ class extension():
             return 'Error'
         return img_data
 
+# Used for the recommendation system
 class recommend():
+    # Used to get the recommended products with the given product number and return the images and links
     @app.route('/recommend', methods=['GET'])
     def recommend_products():
         data = request.args['number'].split(' ')
@@ -1061,6 +1096,7 @@ class recommend():
         response = json.dumps(response, indent = 4) 
         return response
     
+    # Used to check if there are recommended products available for a specific product
     def recommend_check(userID, number, store):        
         if store == 'Stradivarius':
             data = requests.get(f'https://api.empathybroker.com/search/v1/query/stradivarius/skusearch?q={number}&lang=nl&start=0&store=54009552&catalogue=50331084&warehouse=52110059&session=e5705e12-5521-5d65-5912-ff9e86d99a4f&user=4e3f7b10-53a4-b1c4-52ab-4c6855368d6a&scope=desktop&rows=5', headers=headers).content
@@ -1124,24 +1160,12 @@ class recommend():
                 return False
             return True
 
-class pick():
-    @app.route('/pick', methods=['GET'])
-    def get_picked_img():
-        try:
-            userID = request.args['id']
-            path = request.args['path'].replace('/', '\\')
-            
-            img = Image.open(f'static\\{path}')
-            imgCopy = img.copy()
-            imgCopy.save(f'uploads\\{userID}.png')
-            return 'ok'
-        except:
-            return 'error'
-
+# Used when dev_mode is enabled
 def dev_mode(mess):
     if dev_status:
         terminal.log(f'{mess}')        
 
+# Used to get the random images for the Ready2Go feature
 def get_ramdom_img():
     picked_items =  random.sample(range(len(forselectedItems)), 20)
     results = [forselectedItems[i] for i in picked_items]
@@ -1201,6 +1225,7 @@ def get_ramdom_img():
 
     return product_links, product_numbers, stores, product_img
 
+# Used to get the link of the product
 def get_link(number, storeName, zara_model_img_status):
     if storeName == 'H&M':
         return f'https://www.hm.com/productpage.{number}.html'
@@ -1267,6 +1292,7 @@ def get_link(number, storeName, zara_model_img_status):
     else:
         return ''
                 
+# Used to get the the store name and use it in the get_model_image class
 def get_model_store(storeName, number):
     if storeName == 'H&M':
         url = get_model_image.hm(number)
@@ -1292,6 +1318,7 @@ def get_model_store(storeName, number):
         url = get_model_image.riverisland(number)
     return url
 
+# Used to process the results (get the product image, product link, product number, store name, recommended avaible)
 def process_output(results, gender, userID):
     model_img = []
     product_img = []
@@ -1400,6 +1427,7 @@ def process_output(results, gender, userID):
         pass
     return model_img, product_img, product_links, stores, product_numbers, recommended_avaible
 
+# This function is the main function of the app, it processes the input and returns the output
 @app.route('/predict/', methods=['POST', 'GET'])
 def predict():
     start_time = datetime.datetime.now()
@@ -1609,11 +1637,8 @@ def predict():
             flash('Product not found. Try with another input type.')
             terminal.error(f'An error accured when using input type {inputType}: {e}')
             return redirect('/')  
-                             
-@app.route('/uploads/<filename>')
-def upload(filename):
-    return send_from_directory('uploads', filename)
-
+               
+# This is called when you run `python app.py` from the terminal (THIS IS NOT USED ANYMORE, I LEFT IT HERE FOR REFERENCE)              
 #parser = ArgumentParser()
 #parser.add_argument('-dev', '--dev-mode', action='store_true', help='Enable dev mode')
 #parser.add_argument('-reset', '--reset', action='store_true', help='Reset all users')
@@ -1626,6 +1651,7 @@ def upload(filename):
 #    model.initialize_model(False)
 #reset_status = args.reset
 
+# This is called when you run `python app.py` from the terminal (THIS IS NOT USED IN PRODUCTION)
 if __name__ == '__main__':
     app.secret_key = 'FR6545'
     app.config['SESSION_TYPE'] = 'APPLICATION'

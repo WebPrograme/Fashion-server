@@ -1,3 +1,4 @@
+// Description: This script is used to make the collapse items in the privacy policy page hoverable
 accordionArrowFirstState = false;
 accordionArrowSecondState = false;
 

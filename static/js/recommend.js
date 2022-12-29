@@ -1,3 +1,5 @@
+// Description: This file contains the javascript code for the recommendation system
+// This function is used to shrink the recommended results
 function shrink(index) {
     for (var i = 1; i <= 10; i++) {
         if (i != index) {
@@ -16,6 +18,8 @@ function shrink(index) {
     }
 }
 
+
+// This function is used to show the recommended results for a large device of the selected item
 function recommend(event, index) {
     event.preventDefault()
     if (document.querySelectorAll('.recommended-results-' + index)[0].style.display == 'flex') {            
@@ -83,6 +87,7 @@ function recommend(event, index) {
     }
 }
 
+// This function is used to show the recommended results for a small device of the selected item
 function recommendSmall(event, index) {
     event.preventDefault()
     if (document.querySelectorAll('.recommended-small-results-' + index)[0].style.display == 'flex') {

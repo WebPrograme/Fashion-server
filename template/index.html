@@ -561,7 +561,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div {{ display_status }}>
-                                        <form autocomplete="off" action="/predict/" method="post" enctype="multipart/form-data">
+                                        <form autocomplete="off" action="/predict/" method="post" enctype="multipart/form-data" id="form-link-input">
                                             <input name="gender-switch" type="checkbox" class="gender-switch">
                                             <input name="UserID" type="text" class="useridInput">
                                             <div class="form-input-group">
@@ -610,7 +610,7 @@
                             </div>
     
                             <button type="submit" value="Submit" name="BtnSubmit" class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn submit-btn"
-                                onclick="loading('processing');" id="link-confirm-btn" disabled>CONTINUE
+                                onclick="loading('processing');" id="link-confirm-btn" form="form-link-input" disabled>CONTINUE
                                 <div class="form-btn-input-tooltip">
                                     Fill in all the fields
                                 </div>
@@ -621,7 +621,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div {{ display_status }}>
-                                        <form autocomplete="off" action="/predict/" method="post" enctype="multipart/form-data">
+                                        <form autocomplete="off" action="/predict/" method="post" enctype="multipart/form-data" id="form-number-input">
                                             <input name="gender-switch" type="checkbox" class="gender-switch">
                                             <input name="UserID" type="text" class="useridInput">
                                             <div class="form-input-group">
@@ -665,7 +665,7 @@
                             </div>
     
                             <button type="submit" value="Submit" name="BtnSubmit" class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn submit-btn"
-                                onclick="loading('processing');" id="number-confirm-btn" disabled>CONTINUE
+                                onclick="loading('processing');" id="number-confirm-btn" form="form-number-input" disabled>CONTINUE
                                 <div class="form-btn-input-tooltip">
                                     Fill in all the fields
                                 </div>

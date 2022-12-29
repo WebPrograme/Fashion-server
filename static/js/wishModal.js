@@ -1,16 +1,19 @@
+// Description: This file is used to display the wishlist modal
+// Get the necessary variables
 var UserID = localStorage.getItem('UserID');
 var wishList = localStorage.getItem('wishList')
 wishList = JSON.parse(wishList)
 var wishItems = document.querySelector('.wish-items')
 document.getElementById('wish-id').value = UserID;
 
-
+// If the wishlist is empty, display the empty wishlist message
 if (wishList == null || wishList.length == 0) {
     document.querySelector('.wish-empty').style.display = 'block';
     document.querySelector('.wish-scroll-shadow-top').style.display = 'none';
     document.querySelector('.wish-scroll-shadow-bottom').style.display = 'none';
-} else {
+} else { // If the wishlist is not empty, display the wishlist items
     var data = wishList
+    // Create a div for each item in the wishlist
     for (var i = 0; i < data.length; i++) {
         var item = document.createElement('div');
         var img = data[i][3].replace("//", '/');
@@ -34,10 +37,11 @@ if (wishList == null || wishList.length == 0) {
         wishItems.appendChild(item);
     }
 
+    // If the wishlist is less than 3 items, hide the scroll shadows
     if (wishList.length < 3) {
         document.querySelector('.wish-scroll-shadow-top').style.display = 'none';
         document.querySelector('.wish-scroll-shadow-bottom').style.display = 'none';
-    } else {
+    } else { // If the wishlist is more than 3 items, show the scroll shadows
         document.querySelector('.wish-empty').style.display = 'none';
         document.querySelectorAll('.wish-modal .modal-body').forEach(anchor => {
             anchor.addEventListener('scroll', function(e){
@@ -60,6 +64,7 @@ if (wishList == null || wishList.length == 0) {
         })
     }
 
+    // This function is used to remove an item from the wishlist with the remove button in the modal, not the remove button on the card
     function removeWish(event, index) {
         event.preventDefault()
         var wishList = localStorage.getItem('wishList')

@@ -1,11 +1,8 @@
-function updateGender(){
-    console.log('Gender updated')
-    $('.loader-background').show();
-    document.getElementById('gender-form').submit()
-}
-
+// Description: This script is used to show the product image or model image in the product page and some other functions
+// Set all sliders status to false
 var sliderStatus = [false, false, false, false, false, false, false, false, false, false]
 
+// This function is used to reset the rest of the sliders to false
 function resetSliders(index) {
     for (var i = 0; i < sliderStatus.length; i++) {
         if (i != index && sliderStatus[i] == true) {
@@ -21,6 +18,7 @@ function resetSliders(index) {
     }
 }
 
+// This function is used to show the product image
 function showProduct(index) {
     if (index == 1) {
         $('#owl-carousel-basic').trigger('prev.owl.carousel');
@@ -33,6 +31,7 @@ function showProduct(index) {
     resetSliders(index-1);
 }
 
+// This function is used to show the model image
 function showModel(index) {
     if (index == 1) {
         $('#owl-carousel-basic').trigger('next.owl.carousel');
@@ -45,6 +44,7 @@ function showModel(index) {
     resetSliders(index-1);
 }
 
+// This function is used to change the page
 if (document.querySelector('.change_page_form')) {
     document.querySelector('.change_page_form').addEventListener('submit', function(e) {
         document.querySelector('.loader-background').style.display = 'block';
@@ -53,6 +53,7 @@ if (document.querySelector('.change_page_form')) {
     });
 }
 
+// This is used to create the top bar
 var shareMethod = document.getElementById('share-method').value;
 var shareStore = document.getElementById('share-store').value;
 shareMethod = shareMethod.toUpperCase()
@@ -70,6 +71,7 @@ if (shareMethod != '') {
     barHeader.innerHTML = 'IMAGE';
 }
 
+// This is used to show the top bar when the user scrolls down and the input card is not in the view
 function Utils() {
 
 }

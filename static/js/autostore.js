@@ -1,5 +1,7 @@
+// Description: This script is used to automatically detect the store of an article link and fill the store field in the form.
 var input = document.getElementById('articleLink');
 
+// This function is used to detect the store of an article link
 function get_store(link) {
     if (link.includes('hm.com')) {
         store = 'H&M'
@@ -45,6 +47,7 @@ function get_store(link) {
     return store
 }
 
+// This function is used to automatically fill the store field in the form
 input.addEventListener('keyup', function() {
     var link = input.value;
     store = get_store(link);
