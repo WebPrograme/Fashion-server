@@ -1371,6 +1371,10 @@ option:disabled {
     transition: all .2s ease-in-out;
 }
 
+#ready2go-btn-reload i {
+    text-decoration: underline;
+}
+
 #multi-step-form-container {
     margin-top: 2.5rem;
 }

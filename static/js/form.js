@@ -1,4 +1,4 @@
-// Description: This file contains the javascript code for the multi-step form.
+// Description: This file contains the javascript code for the multi-step form and to show the Ready2Go modal when reloaded.
 
 // This function is used to navigate to the next form step
 const navigateToFormStep = (stepNumber) => {
@@ -113,6 +113,22 @@ document.querySelectorAll('.form-btn-type').forEach((formBtnType) => {
         }
     });
 });
+
+// This function is used to reload the ready2go items
+document.getElementById('ready2go-btn-reload').addEventListener('click', () => {
+    window.location.reload();
+    localStorage.setItem('ReloadReady2Go', 'true');
+});
+
+// This function is used to navigate to the ready2go items if the page is reloaded
+window.onload = function() {
+    if (localStorage.getItem('ReloadReady2Go') === 'true') {
+        navigateToFormStep(5);
+        document.querySelector('.step-2-header').innerHTML = 'Image';
+        $("#ready2goBackdrop").modal('show')
+        localStorage.removeItem('ReloadReady2Go');
+    }
+}
 
 // This is used to automatically navigate to the next form step if the user has already selected a gender before
 const localStorageGender = localStorage.getItem('gender');
