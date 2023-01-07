@@ -1667,13 +1667,13 @@ def predict():
 # This is called when you run `python app.py` from the terminal (THIS IS NOT USED IN PRODUCTION)
 app.secret_key = 'FR6545'
 app.config['SESSION_TYPE'] = 'APPLICATION'
-if __name__ == '__main__':
-    model.initialize_model(True)
-else:
-    model.initialize_model(False)
+#if __name__ == '__main__':
+#    model.initialize_model(True)
+#else:
+#    model.initialize_model(False)
     
 cors = CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True, allow_headers=['Access-Control-Allow-Origin'])
 app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
-app.run(host="0.0.0.0", threaded=True, port=5000)
+#app.run(host="0.0.0.0", threaded=True, port=5000)
