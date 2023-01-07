@@ -447,7 +447,7 @@ img {
     position: absolute;
     margin: 0;
     padding: 0;
-    width: 100%;
+    max-width: -webkit-fill-available;
     height: 240px;
     outline: none;
     opacity: 0;
