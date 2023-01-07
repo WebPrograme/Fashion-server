@@ -762,6 +762,12 @@ class get_model_image():
         img_data = requests.get(f"https://st.mngbcn.com/rcs/pics/static/T3/fotos/S20/{number[:-2]}_{number[-2:]}.jpg", headers=headers)
         if img_data.status_code != 200:
             img_data = requests.get(f"https://st.mngbcn.com/rcs/pics/static/T3/fotos/S20/{number[:-2]}_{number[-2:]}_D1.jpg", headers=headers)
+            if img_data.status_code != 200:
+                img_data = requests.get(f"https://st.mngbcn.com/rcs/pics/static/T4/fotos/S20/{number[:-2]}_{number[-2:]}.jpg", headers=headers)
+                if img_data.status_code != 200:
+                    img_data = requests.get(f"https://st.mngbcn.com/rcs/pics/static/T4/fotos/S20/{number[:-2]}_{number[-2:]}_D1.jpg", headers=headers)
+                    return f"https://st.mngbcn.com/rcs/pics/static/T4/fotos/S20/{number[:-2]}_{number[-2:]}_D1.jpg"
+                return f"https://st.mngbcn.com/rcs/pics/static/T4/fotos/S20/{number[:-2]}_{number[-2:]}.jpg"
             return f"https://st.mngbcn.com/rcs/pics/static/T3/fotos/S20/{number[:-2]}_{number[-2:]}_D1.jpg"
         return f"https://st.mngbcn.com/rcs/pics/static/T3/fotos/S20/{number[:-2]}_{number[-2:]}.jpg"
 
@@ -779,21 +785,21 @@ class get_model_image():
                 return f'https://nyblobstoreprod.blob.core.windows.net/product-images-public/{imageFile["key"]}'
 
     def zara(number):
-        productId = number
+        founded_products = requests.get(f'https://api.empathy.co/search/v1/query/zara/search?query={number}&lang=nl_NL&start=0&rows=30&section=&store=11703&scope=default&contextualizeEnabled=true&hideOptionalProducts=false&catalogue=63551&warehouse=18564&session=7963c241-598e-4493-8468-3ef3bde7da57&ajax=true', headers={"User-Agent": "Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0"}).content
+
         try:
-            data = requests.get(f'https://www.zara.com/be/nl/-p0{productId}.html', headers=headers).content
-            data = str(data)
-
-            img_find = data.find('_1_1.jpg')
-            end = data[img_find:].find('"')
-            reverse = data[:end+img_find][::-1]
-            start = reverse.find('"')
-            img_url = reverse[:start][::-1]
-
-            return img_url
-        except Exception as e:
-            print(e)
-            pass
+            imgs = json.loads(founded_products)['catalog']['content'][0]['xmedia']
+        except:
+            return ''
+        
+        for img in imgs:
+            img_name = img['name']
+            if '_6_1_1' in img_name:
+                img_path = img['path']
+                img_ts = img['timestamp']
+                img_url = f'https://static.zara.net/photos//{img_path}/{img_name}.jpg?ts={img_ts}'
+                             
+                return img_url
 
     def pullbear(number):
         possible_urls = [f"https://static.pullandbear.net/2/photos//2023/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?",
