@@ -814,7 +814,19 @@ class get_model_image():
                 return url 
 
     def stradivarius(number):
-        return f"https://static.e-stradivarius.net/5/photos3/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?"
+        req = requests.get(f"https://static.e-stradivarius.net/5/photos3/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_2.jpg?", headers=headers)
+        if req.status_code == 200:
+            return f"https://static.e-stradivarius.net/5/photos3/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_2.jpg?"
+        else:
+            req = requests.get(f"https://static.e-stradivarius.net/5/photos3/2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_2.jpg?", headers=headers)
+            if req.status_code == 200:
+                return f"https://static.e-stradivarius.net/5/photos3/2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_2.jpg?"
+            else:
+                req = requests.get(f"https://static.e-stradivarius.net/5/photos3/2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_2.jpg?", headers=headers)
+                if req.status_code == 200:
+                    return f"https://static.e-stradivarius.net/5/photos3/2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_2.jpg?"
+                else:
+                    return f"https://static.e-stradivarius.net/5/photos3/2023/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_2.jpg?"
         
     def bershka(number):
         possible_urls = [f"https://static.bershka.net/4/photos2/2023/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?", f"https://static.bershka.net/4/photos2/2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_1_1_1.jpg?",
@@ -1375,7 +1387,7 @@ def process_output(results, gender, userID):
         path = result
         start = os.path.splitext(path)[0].find('\\')
         file_name = os.path.splitext(path)[0][start+1:] + os.path.splitext(path)[1]
-        if storeName != 'Most Wanted' and storeName != 'New Yorker' and storeName != 'Stradivarius':
+        if storeName != 'Most Wanted' and storeName != 'New Yorker':
             modelUrl = get_model_store(storeName, file_name[:-5])
             try:
                 reqstatus = requests.get(modelUrl, headers=headers).status_code
@@ -1389,20 +1401,7 @@ def process_output(results, gender, userID):
             except Exception as e:
                 model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/{store_path}/women/{file_name[:-5]}.webp')
         else:
-            if storeName == 'Stradivarius':
-                    
-                number = file_name[:-5]
-                req = requests.get(f'https://static.e-stradivarius.net/5/photos3/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:10]}/{number}_1_1_2.jpg', headers=headers)
-                req_2023 = requests.get(f'https://static.e-stradivarius.net/5/photos3/2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:10]}/{number}_1_1_2.jpg', headers=headers)
-                
-                if req.status_code == 200:
-                    model_img.append(f'https://static.e-stradivarius.net/5/photos3/2022/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:10]}/{number}_1_1_2.jpg')
-                elif req_2023.status_code == 200:
-                    model_img.append(f'https://static.e-stradivarius.net/5/photos3/2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:10]}/{number}_1_1_2.jpg')
-                else:
-                    model_img.append(f'https://static.e-stradivarius.net/5/photos3/2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:10]}/{number}_1_1_2.jpg')
-            else:
-                model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/{store_path}/women/{file_name[:-5]}.webp')
+            model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/{store_path}/women/{file_name[:-5]}.webp')
         
         if storeName == 'Stradivarius' or storeName == 'Mango' or storeName == 'River Island' or storeName == 'Bershka':
             recommended_avaible.append(recommend.recommend_check(userID, file_name[:-5], storeName))
@@ -1666,17 +1665,15 @@ def predict():
 #reset_status = args.reset
 
 # This is called when you run `python app.py` from the terminal (THIS IS NOT USED IN PRODUCTION)
+app.secret_key = 'FR6545'
+app.config['SESSION_TYPE'] = 'APPLICATION'
 if __name__ == '__main__':
-    app.secret_key = 'FR6545'
-    app.config['SESSION_TYPE'] = 'APPLICATION'
-    if __name__ == '__main__':
-        model.initialize_model(True)
-    else:
-        model.initialize_model(False)
-        
-    cors = CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True, allow_headers=['Access-Control-Allow-Origin'])
-    app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
-    log = logging.getLogger('werkzeug')
-    log.setLevel(logging.ERROR)
-    print('Server started')
-    app.run(host="0.0.0.0", threaded=True, port=5000)
+    model.initialize_model(True)
+else:
+    model.initialize_model(False)
+    
+cors = CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True, allow_headers=['Access-Control-Allow-Origin'])
+app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+app.run(host="0.0.0.0", threaded=True, port=5000)
