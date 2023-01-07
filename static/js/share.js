@@ -1,6 +1,5 @@
 // Description: This file contains the code for the "Share" feature.
 // Get the necessary values from the form
-var shareID = document.getElementById('share-id').value;
 var shareStore = document.getElementById('share-store').value;
 var shareContent = document.getElementById('share-content').value;
 var shareMethod = document.getElementById('share-method').value;
@@ -8,11 +7,11 @@ var shareMethod = document.getElementById('share-method').value;
 // Create the URL to share
 // If the user chose to share a input link, the URL will be like this:
 if (shareMethod == 'link') {
-    var shareURL = 'https://fashion-recommender.onrender.com/predict/?UserID=' + shareID + '&store=' + shareStore + '&link=' + shareContent; 
+    var shareURL = 'https://fashion-recommender.onrender.com/predict/?store=' + shareStore + '&link=' + shareContent; 
 } else if (shareMethod == 'number') { // If the user chose to share a input number, the URL will be like this:
-    var shareURL = 'https://fashion-recommender.onrender.com/predict/?UserID=' + shareID + '&store=' + shareStore + '&number=' + shareContent; 
+    var shareURL = 'https://fashion-recommender.onrender.com/predict/?store=' + shareStore + '&number=' + shareContent; 
 } else { // If the user chose to share a Ready2Go image, the URL will be like this:
-    var shareURL = 'https://fashion-recommender.onrender.com/predict/?UserID=' + shareID + '&forselected-input=' + shareStore + ' ' + shareContent; 
+    var shareURL = 'https://fashion-recommender.onrender.com/predict/?forselected-input=' + shareStore + ' ' + shareContent; 
 }
 
 // Create the data to share

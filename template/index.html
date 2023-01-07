@@ -92,7 +92,7 @@
                           </a>
                           <div id="collapse-3" class="collapse" role="tabpanel" aria-labelledby="heading-3" data-bs-parent="#accordion">
                             <div class="card-body"> 
-                                <p>We use Local Storage to run this website. In the Local Storage we save your unique id that will be made when you agree to our privacy policy (this and the above text). We also save here if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices. We also store your last used gender, if you reload the Ready2Go items (when used) and your Favorites (when used) to optimize use.</p>
+                                <p>We use Local Storage to run this website. In the Local Storage we save if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices. We also store your last used gender, if you reload the Ready2Go items (when used) and your Favorites (when used) to optimize use.</p>
                                 <p><strong>Fontawesome: </strong>we use Fontawesome for the icons on this website. For this to work, Fontawesome uses cookies.</p>
                                 <p><strong>Stores: </strong>by using pictures with the model some stores use cookies. These cookies are temporary.</p>
                             </div>
@@ -107,7 +107,7 @@
                             </a>
                             <div id="collapse-2" class="collapse" role="tabpanel" aria-labelledby="heading-2" data-bs-parent="#accordion">
                                 <div class="card-body"> 
-                                    <p>Like stated above, We use Local Storage to run this website. In the Local Storage we save your unique id that will be made when you agree to our privacy policy (this and the above text). We also save here if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices. We also store your last used gender, if you reload the Ready2Go items (when used) and your Favorites (when used) to optimize use.</p>                                 </div>
+                                    <p>Like stated above, We use Local Storage to run this website. In the Local Storage we save if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices. We also store your last used gender, if you reload the Ready2Go items (when used) and your Favorites (when used) to optimize use.</p>                                 </div>
                                     <p>We don't save any personal data. This include your uploaded image or the other input data.</p>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                           </a>
                           <div id="collapse-privacy-3" class="collapse" role="tabpanel" aria-labelledby="heading-privacy-3" data-bs-parent="#accordion-privacy">
                             <div class="card-body"> 
-                                <p>We use Local Storage to run this website. In the Local Storage we save your unique id that will be made when you agree to our privacy policy (this and the above text). We also save here if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices. We also store your last used gender, if you reload the Ready2Go items (when used) and your Favorites (when used) to optimize use.</p>
+                                <p>We use Local Storage to run this website. In the Local Storage we save if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices. We also store your last used gender, if you reload the Ready2Go items (when used) and your Favorites (when used) to optimize use.</p>
                                 <p><strong>Fontawesome: </strong>we use Fontawesome for the icons on this website. For this to work, Fontawesome uses cookies.</p>
                                 <p><strong>Stores: </strong>by using pictures with the model some stores use cookies. These cookies are temporary.</p>
                             </div>
@@ -158,7 +158,7 @@
                             </a>
                             <div id="collapse-privacy-2" class="collapse" role="tabpanel" aria-labelledby="heading-privacy-2" data-bs-parent="#accordion-privacy">
                                 <div class="card-body"> 
-                                    <p>Like stated above, We use Local Storage to run this website. In the Local Storage we save your unique id that will be made when you agree to our privacy policy (this and the above text). We also save here if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices. We also store your last used gender, if you reload the Ready2Go items (when used) and your Favorites (when used) to optimize use.</p> 
+                                    <p>Like stated above, We use Local Storage to run this website. In the Local Storage we save if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices. We also store your last used gender, if you reload the Ready2Go items (when used) and your Favorites (when used) to optimize use.</p> 
                                     <p>We don't save any personal data. This include your uploaded image or the other input data.</p>
                                 </div>
                             </div>
@@ -563,7 +563,6 @@
                                     <div {{ display_status }}>
                                         <form autocomplete="off" action="/predict/" method="post" enctype="multipart/form-data" id="form-link-input">
                                             <input name="gender-switch" type="checkbox" class="gender-switch">
-                                            <input name="UserID" type="text" class="useridInput">
                                             <div class="form-input-group">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -623,7 +622,6 @@
                                     <div {{ display_status }}>
                                         <form autocomplete="off" action="/predict/" method="post" enctype="multipart/form-data" id="form-number-input">
                                             <input name="gender-switch" type="checkbox" class="gender-switch">
-                                            <input name="UserID" type="text" class="useridInput">
                                             <div class="form-input-group">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -676,7 +674,6 @@
                             <form autocomplete="off" action="/predict/" method="post" enctype="multipart/form-data" id="uploader">
                                 <label for="upload-input" hidden></label>
                                 <input name="gender-switch" type="checkbox" class="gender-switch">
-                                <input name="UserID" type="text" class="useridInput">
                                 <div class="upload-div" {{ display_status }}>
                                     <input type="file" name="file" id="upload-input" accept="image/*"/>
 
@@ -694,13 +691,11 @@
                 </div>
 
                 <form class="change_page_form" action="{{ url_for('prev_page') }}" method="post" id="hidden-pick-form">
-                    <input type="hidden" name="id" id="wish-id" value="{{ UserID }}">
                     <input type="hidden" name="gender" value="women">
                     <button type="submit" class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn footer-btn" id="picker-prev">Show second page</button>
                 </form>
 
                 <form class="display-none" method="post" id="forselected-form" action="/predict/" enctype="multipart/form-data">
-                    <input name="UserID" type="text" class="useridInput">
                     <input type="text" name="forselected-input" id="forselected-input">
                 </form>
             </div>

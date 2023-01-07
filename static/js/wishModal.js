@@ -1,10 +1,8 @@
 // Description: This file is used to display the wishlist modal
 // Get the necessary variables
-var UserID = localStorage.getItem('UserID');
 var wishList = localStorage.getItem('wishList')
 wishList = JSON.parse(wishList)
 var wishItems = document.querySelector('.wish-items')
-document.getElementById('wish-id').value = UserID;
 
 // If the wishlist is empty, display the empty wishlist message
 if (wishList == null || wishList.length == 0) {

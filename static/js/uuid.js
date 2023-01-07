@@ -13,17 +13,7 @@ function delay(time) {
 
 // This function is used when the user agrees with the cookies
 async function UserAgreed(e) {
-    $(e).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`);	
-    var key = 'UserAgreed',
-        UserID = localStorage.getItem('UserID');
-    if (!UserID) {
-        UserID = uuidv4();
-        localStorage.setItem('UserID', UserID);
-    }
-    var myElements = document.querySelectorAll('.useridInput')
-    for (let i = 0; i < myElements.length; i++) {
-        myElements[i].value = UserID;
-    }
+    $(e).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`);
     
     if (document.querySelector('.alert-danger')) {
         document.querySelector('.alert-danger').style.display = 'none';
@@ -39,7 +29,6 @@ $(document).ready(function () {
     // Get the necessary variables from the local storage
     var userWelcome = localStorage.getItem('userWelcome');
         userChoice = localStorage.getItem('UserAgreed');
-        UserID = localStorage.getItem('UserID');
         
     // If the user has not agreed with the cookies, it shows the modal and the cookies
     if (!userChoice) {
@@ -50,10 +39,5 @@ $(document).ready(function () {
         }
         document.querySelector('.cookie').style.display = 'flex';
     // If the user has already agreed with the cookies, it hides the modal and the cookies
-    } else {
-        var myElements = document.querySelectorAll('.useridInput')
-        for (let i = 0; i < myElements.length; i++) {
-            myElements[i].value = UserID;
-        }
     }
 });
