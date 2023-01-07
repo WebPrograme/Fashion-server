@@ -40,7 +40,7 @@ ready2go_results_list = []
 last_index = 0
 
 # Get the ready2go results and parse them
-ready2go_results = requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/data/ready2go_results.txt').content
+ready2go_results = requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/data/ready2go_results.txt').content
 ready2go_results = ready2go_results.decode('utf-8')
 
 for count, i in enumerate(ready2go_results):
@@ -57,7 +57,7 @@ for i in temp_list:
     ready2go_results_list.append(a)
 
 # Get the express color list
-express_color_list_file = requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/data/express_color_list.json').content
+express_color_list_file = requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/data/express_color_list.json').content
 express_color_list = json.loads(express_color_list_file)['colors']
 
 # Initialize the standard headers
@@ -290,7 +290,7 @@ def home():
         else:
             stores.append('WM')
         product_numbers.append(file_name[:-5])        
-        product_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{file_name[:-5]}.webp')
+        product_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/{store_path}/women/{file_name[:-5]}.webp')
             
         count += 1
     
@@ -785,21 +785,20 @@ class get_model_image():
                 return f'https://nyblobstoreprod.blob.core.windows.net/product-images-public/{imageFile["key"]}'
 
     def zara(number):
-        founded_products = requests.get(f'https://api.empathy.co/search/v1/query/zara/search?query={number}&lang=nl_NL&start=0&rows=30&section=&store=11703&scope=default&contextualizeEnabled=true&hideOptionalProducts=false&catalogue=63551&warehouse=18564&session=7963c241-598e-4493-8468-3ef3bde7da57&ajax=true', headers={"User-Agent": "Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0"}).content
-
+        productId = number
         try:
-            imgs = json.loads(founded_products)['catalog']['content'][0]['xmedia']
-        except:
-            return ''
-        
-        for img in imgs:
-            img_name = img['name']
-            if '_6_1_1' in img_name:
-                img_path = img['path']
-                img_ts = img['timestamp']
-                img_url = f'https://static.zara.net/photos//{img_path}/{img_name}.jpg?ts={img_ts}'
-                             
-                return img_url
+            data = requests.get(f'https://www.zara.com/be/nl/-p0{productId}.html', headers=headers).content
+            data = str(data)
+
+            img_find = data.find('_1_1.jpg')
+            end = data[img_find:].find('"')
+            reverse = data[:end+img_find][::-1]
+            start = reverse.find('"')
+            img_url = reverse[:start][::-1]
+
+            return img_url
+        except Exception as e:
+            pass
 
     def pullbear(number):
         possible_urls = [f"https://static.pullandbear.net/2/photos//2023/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?", f"https://static.pullandbear.net/2/photos//2023/I/0/1/p/{number[:4]}/{number[4:7]}/{number[7:]}/{number}_2_1_1.jpg?",
@@ -1384,11 +1383,11 @@ def process_output(results, gender, userID):
                     model_img.append(modelUrl)
                 elif storeName == 'Zara':
                     zara_model_img_status = False
-                    model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{file_name[:-5]}.webp')
+                    model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/{store_path}/women/{file_name[:-5]}.webp')
                 else:
-                    model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{file_name[:-5]}.webp')
+                    model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/{store_path}/women/{file_name[:-5]}.webp')
             except Exception as e:
-                model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{file_name[:-5]}.webp')
+                model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/{store_path}/women/{file_name[:-5]}.webp')
         else:
             if storeName == 'Stradivarius':
                     
@@ -1403,7 +1402,7 @@ def process_output(results, gender, userID):
                 else:
                     model_img.append(f'https://static.e-stradivarius.net/5/photos3/2022/V/0/1/p/{number[:4]}/{number[4:7]}/{number[7:10]}/{number}_1_1_2.jpg')
             else:
-                model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{file_name[:-5]}.webp')
+                model_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/{store_path}/women/{file_name[:-5]}.webp')
         
         if storeName == 'Stradivarius' or storeName == 'Mango' or storeName == 'River Island' or storeName == 'Bershka':
             recommended_avaible.append(recommend.recommend_check(userID, file_name[:-5], storeName))
@@ -1419,7 +1418,7 @@ def process_output(results, gender, userID):
             stores.append('WM')
 
         product_numbers.append(file_name[:-5])
-        product_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{file_name[:-5]}.webp')
+        product_img.append(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/{store_path}/women/{file_name[:-5]}.webp')
         
         count += 1
     
@@ -1476,7 +1475,7 @@ def predict():
                 file_index = forselectedItems.index(used_file)
                 results = list(ready2go_results_list)[file_index][:10]
                 
-                url = f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{number}.webp'
+                url = f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/{store_path}/women/{number}.webp'
                 terminal.log(f'Programm started with given input')
                 terminal.log(f'10 results found with input type: Ready2Go images')
                 dev_mode(f'Results: {results}')
@@ -1596,7 +1595,7 @@ def predict():
             file_index = forselectedItems.index(used_file)
             results = list(ready2go_results_list)[file_index][:10]
             
-            url = f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/{store_path}/women/{number}.webp'
+            url = f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/{store_path}/women/{number}.webp'
             terminal.log(f'Programm started with given input')
             terminal.log(f'10 results found with input type: Ready2Go images')
             dev_mode(f'Results: {results}')

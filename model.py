@@ -34,7 +34,7 @@ def initialize_model(dev_model):
     console = Console()
     
     model = ResNet50(weights="imagenet", include_top=False, input_shape=(224, 224, 3)) 
-    img_files_list = pickle.loads(requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/img_filesWOMEN3.pkl').content)
+    img_files_list = pickle.loads(requests.get('https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/img_data/img_filesWOMEN3.pkl').content)
     features_list = []
     
     if not dev_model:
@@ -43,13 +43,13 @@ def initialize_model(dev_model):
         with Progress() as progress:
             task = progress.add_task("[green]Loading data...", total=69)
             for i in range(69):
-                temp_data = pickle.loads(requests.get(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/files/image_features_embeddingWOMEN_small{i}.pkl').content)
+                temp_data = pickle.loads(requests.get(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/img_data/files/image_features_embeddingWOMEN_small{i}.pkl').content)
                 features_list += temp_data
                 progress.update(task, advance=1)
     else:
         console.log("Innitializing ResNet50 + Sequential model...")
         for i in range(2):
-            temp_data = pickle.loads(requests.get(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/img_data/files/image_features_embeddingWOMEN{i}.pkl').content)
+            temp_data = pickle.loads(requests.get(f'https://raw.githubusercontent.com/WebPrograme/Fashion-Server-Data/master/img_data/files/image_features_embeddingWOMEN{i}.pkl').content)
             features_list += temp_data
         model = Sequential([model, GlobalMaxPooling2D()]) # Faster but less accurate
 
