@@ -73,6 +73,7 @@ async function wish(event, value) {
             source.children[0].classList.remove('wish-btn-icon-active')
         }
     }
+    showWishItems('add')
 }
 
 // This function is used to remove an item from the wishlist

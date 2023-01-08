@@ -1343,21 +1343,37 @@ option:disabled {
 }
 
 .top-bar a {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.top-bar a.wish-btn {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    border-top-right-radius: .35rem;
+    border-bottom-right-radius: .35rem;
+}
+
+.top-bar a.wish-btn i {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar .card {
+    border: none;
+    padding: 0;
 }
 
 .top-bar .card-body {
     display: flex;
     justify-content: space-between;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: 0;
+    padding: 0;
 }
 
 .top-bar-visible .top-bar {
     top: 12px;
-    transition: all .2s ease-in-out;
+    transition: all .2s cubic-bezier(.47,1.64,.41,.8);
 }
 
 .results-large .card, .results-small .card, .input-card .card {

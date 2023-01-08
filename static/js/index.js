@@ -52,3 +52,39 @@ if (document.querySelector('.change_page_form')) {
         $('.loader-background').show();
     });
 }
+
+// This is used to show the top bar when the user scrolls down and the input card is not in the view
+function Utils() {
+
+}
+
+Utils.prototype = {
+    constructor: Utils,
+    isElementInView: function (element, fullyInView) {
+        var pageTop = $(window).scrollTop();
+        var pageBottom = pageTop + $(window).height();
+        var elementTop = $(element).offset().top;
+        var elementBottom = elementTop + $(element).height();
+
+        if (fullyInView === true) {
+            return ((pageTop < elementTop) && (pageBottom > elementBottom));
+        } else {
+            return ((elementTop <= pageBottom) && (elementBottom >= pageTop));
+        }
+    }
+};
+
+var Utils = new Utils();
+var topBar = document.querySelector('.top-bar-container');
+
+document.addEventListener('scroll', function() {
+    var isElementInView = Utils.isElementInView($('.input-card'), false);
+
+    if (isElementInView) {
+        if (topBar.classList.contains('top-bar-visible')) {
+            topBar.classList.remove('top-bar-visible');
+        }
+    } else {
+        topBar.classList.add('top-bar-visible');
+    }
+});

@@ -171,6 +171,35 @@
             </div>
         </div>
     </div>
+    
+    <!-- Wish Modal -->
+    <div class="modal fade wish-modal" id="wishBackdrop" data-bs-backdrop="wish" data-bs-keyboard="false" tabindex="-1" aria-labelledby="wishBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h6 class="modal-title" id="wishBackdropLabel">Favorites</h6>
+                        <h6 class="text-muted modal-title-description">Here you can find all your favorite items</h6>
+                    </div>
+                    <p type="button" data-bs-dismiss="modal">Close</p>
+                </div>
+                <div class="modal-body">
+                    <div class="wish-scroll-shadow-top"></div>
+                    <div class="wish-empty">
+                        <i class="fa-solid fa-heart-crack"></i>
+                        <h5>You don't have any favorites yet</h5>
+                    </div>
+                    <div class="row wish-items">
+                        
+                    </div>
+                    <div class="wish-scroll-shadow-bottom"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container-fluid page-body-wrapper">
         <div class="main-panel">
@@ -1471,6 +1500,7 @@
     <script src="{{ url_for('static',filename='js/dashboard.js') }}"> </script>
     <script src="{{ url_for('static',filename='js/recommend.js') }}"> </script>
     <script src="{{ url_for('static',filename='js/wish.js') }}"> </script>
+    <script src="{{ url_for('static',filename='js/wishModal.js') }}"> </script>
     <script src="{{ url_for('static',filename='js/share.js') }}"> </script>
 
     <script>
