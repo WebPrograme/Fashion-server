@@ -1210,6 +1210,10 @@ option:disabled {
     max-width: 130px;
 }
 
+.wish-item-card a, .wish-item-card a:hover {
+    text-decoration: none !important;
+}
+
 #myVideo{
     width: 100%;
 }

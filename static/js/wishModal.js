@@ -22,18 +22,19 @@ function showWishItems(source) {
                 item.classList.add('grid-margin', 'col-md-6', 'col-xl-6', 'wish-item-card');
                 item.title = 'Click to use this image';
                 item.innerHTML = `
-                <div class="card">
-                    <div class="card-body">
-                        <img src="` + data[i][3] + `" alt="No image is available" class="forselected-img wish-card-img"">
-                        <div class="wish-card-info">
-                            <h4 class="card-title wish-card-number">` + data[i][1] + `</h4>
-                            <h4 class="card-title text-muted wish-card-store">` + data[i][0] + `</h3>
+                <a ` + data[i][2] + ` target="_blank">
+                    <div class="card">
+                        <div class="card-body">
+                            <img src="` + data[i][3] + `" alt="No image is available" class="forselected-img wish-card-img"">
+                            <div class="wish-card-info">
+                                <h4 class="card-title wish-card-number">` + data[i][1] + `</h4>
+                                <h4 class="card-title text-muted wish-card-store">` + data[i][0] + `</h3>
 
-                            <a ` + data[i][2] + ` class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn wish-card-btn-checkout" target="_blank">Check out</a>
-                            <button class="btn btn-lg upload-btn btn-block btn-secondary btn-fw battle__card__submit__btn" onclick="removeWish(event, this.value)" value=` + i + ` title="Click to remove this item">Remove</button>
+                                <button class="btn btn-lg upload-btn btn-block btn-secondary btn-fw battle__card__submit__btn" onclick="removeWish(event, this.value)" value=` + i + ` title="Click to remove this item">Remove</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 `;
 
                 wishItems.appendChild(item);
@@ -46,18 +47,19 @@ function showWishItems(source) {
             item.classList.add('grid-margin', 'col-md-6', 'col-xl-6', 'wish-item-card');
             item.title = 'Click to use this image';
             item.innerHTML = `
-            <div class="card">
-                <div class="card-body">
-                    <img src="` + data[data.length - 1][3] + `" alt="No image is available" class="forselected-img wish-card-img"">
-                    <div class="wish-card-info">
-                        <h4 class="card-title wish-card-number">` + data[data.length - 1][1] + `</h4>
-                        <h4 class="card-title text-muted wish-card-store">` + data[data.length - 1][0] + `</h3>
+            <a ` + data[i][2] + ` target="_blank">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="` + data[data.length - 1][3] + `" alt="No image is available" class="forselected-img wish-card-img"">
+                        <div class="wish-card-info">
+                            <h4 class="card-title wish-card-number">` + data[data.length - 1][1] + `</h4>
+                            <h4 class="card-title text-muted wish-card-store">` + data[data.length - 1][0] + `</h3>
 
-                        <a ` + data[data.length - 1][2] + ` class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn wish-card-btn-checkout" target="_blank">Check out</a>
-                        <button class="btn btn-lg upload-btn btn-block btn-secondary btn-fw battle__card__submit__btn" onclick="removeWish(event, this.value)" value=` + (data.length - 1).toString() + ` title="Click to remove this item">Remove</button>
+                            <button class="btn btn-lg upload-btn btn-block btn-secondary btn-fw battle__card__submit__btn" onclick="removeWish(event, this.value)" value=` + (data.length - 1).toString() + ` title="Click to remove this item">Remove</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
             `;
 
             wishItems.appendChild(item);
