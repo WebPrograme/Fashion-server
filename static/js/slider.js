@@ -11,7 +11,7 @@ document.querySelectorAll('.ready2go-card').forEach(anchor => {
 // This is used to show the modal effects when the user scrolls the modal body
 document.querySelectorAll('.modal-dialog-scrollable .modal-body').forEach(anchor => {
     anchor.addEventListener('scroll', function(e){
-        var modal_body = $('.modal-dialog-scrollable .modal-body')[9];
+        var modal_body = $('.modal-dialog-scrollable .modal-body')[8];
         var modal_scrollTop = modal_body.scrollTop;
         var modal_scrollHeight = modal_body.scrollHeight;        
         var modal_innerHeight = modal_body.offsetHeight;        

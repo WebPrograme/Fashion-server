@@ -1352,6 +1352,8 @@ option:disabled {
     border-bottom-left-radius: 0;
     border-top-right-radius: .35rem;
     border-bottom-right-radius: .35rem;
+    background-color: #fff;
+    border: none;
 }
 
 .top-bar a.wish-btn i {
@@ -1373,7 +1375,7 @@ option:disabled {
 
 .top-bar-visible .top-bar {
     top: 12px;
-    transition: all .2s cubic-bezier(.47,1.64,.41,.8);
+    transition: all .2s ease-in-out;
 }
 
 .results-large .card, .results-small .card, .input-card .card {
