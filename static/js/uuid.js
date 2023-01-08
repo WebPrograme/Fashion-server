@@ -12,32 +12,19 @@ function delay(time) {
 }
 
 // This function is used when the user agrees with the cookies
-async function UserAgreed(e) {
-    $(e).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`);
-    
-    if (document.querySelector('.alert-danger')) {
-        document.querySelector('.alert-danger').style.display = 'none';
+function UserAgreed() {
+    if (localStorage.getItem('UserAgreed') == null) {
+        localStorage.setItem('UserAgreed', true);
     }
-
-    await delay(900);
-    document.querySelector('.cookie').style.display = 'none';  
-    localStorage.setItem('UserAgreed', true)
 }
 
 // This is used to check if the user has already agreed with the cookies, if not, it shows the modal and the cookies
 $(document).ready(function () {
     // Get the necessary variables from the local storage
-    var userWelcome = localStorage.getItem('userWelcome');
-        userChoice = localStorage.getItem('UserAgreed');
+    var userChoice = localStorage.getItem('UserAgreed');
         
     // If the user has not agreed with the cookies, it shows the modal and the cookies
     if (!userChoice) {
-        if (!userWelcome) {
-            document.querySelector('.startupModalBody').innerHTML = `<video src="https://raw.githubusercontent.com/WebPrograme/Fashion-Data/master/Fashion%20recommender%203.mp4" autoplay muted loop id="myVideo"></video>`
-            $('#startupBackdrop').modal('show');
-            localStorage.setItem('userWelcome', true);
-        }
-        document.querySelector('.cookie').style.display = 'flex';
-    // If the user has already agreed with the cookies, it hides the modal and the cookies
+        $('#privacyBackdrop').modal('show');
     }
 });

@@ -73,63 +73,12 @@
         {% endif %}
     {% endwith %}
     
-    <div class="modal fade" id="cookiesBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="cookiesdropLabel" aria-hidden="true"  data-keyboard="false">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="cookiesdropLabel">Privacy</h4>
-                </div>
-                <div class="modal-body">
-                    <p>We use functional cookies and similar technologies that are necessary to operate this website. <i>All image rights reserved to the linked stores</i></p>
-                    <div class="accordion" id="accordion" role="tablist">
-                        <div class="card">
-                          <a onclick="cookiesAccordion(1)" data-bs-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3" class="card-header accordion-header justify-content-between" role="tab" id="heading-3">
-                            <h6 class="mb-0">
-                              Functional cookies 
-                            </h6>
-                            <i class="fa-solid fa-chevron-down" id="accordion-item-1-header-arrow"></i>
-                          </a>
-                          <div id="collapse-3" class="collapse" role="tabpanel" aria-labelledby="heading-3" data-bs-parent="#accordion">
-                            <div class="card-body"> 
-                                <p>We use Local Storage to run this website. In the Local Storage we save if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices. We also store your last used gender, if you reload the Ready2Go items (when used) and your Favorites (when used) to optimize use.</p>
-                                <p><strong>Fontawesome: </strong>we use Fontawesome for the icons on this website. For this to work, Fontawesome uses cookies.</p>
-                                <p><strong>Stores: </strong>by using pictures with the model some stores use cookies. These cookies are temporary.</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card">
-                            <a onclick="cookiesAccordion(2)" data-bs-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapseTwo" class="card-header accordion-header justify-content-between" role="tab" id="heading-2">
-                              <h6 class="mb-0">
-                                Your saved data 
-                              </h6>
-                              <i class="fa-solid fa-chevron-down" id="accordion-item-2-header-arrow"></i>
-                            </a>
-                            <div id="collapse-2" class="collapse" role="tabpanel" aria-labelledby="heading-2" data-bs-parent="#accordion">
-                                <div class="card-body"> 
-                                    <p>Like stated above, We use Local Storage to run this website. In the Local Storage we save if you have agreed to the terms. Local Storage is saved on your device, NOT on the server and cannot be conected to specific users or devices. We also store your last used gender, if you reload the Ready2Go items (when used) and your Favorites (when used) to optimize use.</p>                                 </div>
-                                    <p>We don't save any personal data. This include your uploaded image or the other input data.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button"
-                        class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn"
-                        data-bs-dismiss="modal" onclick="UserAgreed()">Agree</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="privacyBackdrop" data-bs-backdrop="privacy" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="privacyBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="privacydropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="privacydropLabel">Privacy</h4>
-                    <p type="button" data-bs-dismiss="modal">Close</p>
                 </div>
                 <div class="modal-body">
                     <p>We use functional cookies and similar technologies that are necessary to operate this website. <i>All image rights reserved to the linked stores</i></p>
@@ -168,7 +117,7 @@
                 <div class="modal-footer">
                     <button type="button"
                         class="btn btn-lg upload-btn btn-block btn-primary btn-fw battle__card__submit__btn"
-                        data-bs-dismiss="modal">Close</button>
+                        data-bs-dismiss="modal" onclick="UserAgreed()">Agree</button>
                 </div>
             </div>
         </div>
@@ -197,7 +146,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
