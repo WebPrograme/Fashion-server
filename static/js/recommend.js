@@ -23,12 +23,14 @@ function shrink(index) {
 function recommend(event, index) {
     event.preventDefault()
     if (document.querySelectorAll('.recommended-results-' + index)[0].style.display == 'flex') {            
+        document.querySelector('.item-img-container-' + index).getElementsByClassName("picker-container")[0].style.visibility = "visible";
         var elements = document.querySelectorAll('.recommended-results-' + index);
         for (var i = 0; i < elements.length; i++) {
             elements[i].style.display = 'none';
         }
         document.getElementById('recommended_results_' + index +'_arrow').classList.toggle('accordion-header-arrow-flip');
     } else {
+        document.querySelector('.item-img-container-' + index).getElementsByClassName("picker-container")[0].style.visibility = "hidden";
         document.getElementById('recommended_results_' + index +'_arrow').classList.toggle('accordion-header-arrow-flip');
         var request = new XMLHttpRequest();
         request.open("GET", "/recommend?number=" + document.getElementById('recommendBtn' + index).value, true);

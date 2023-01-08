@@ -20,28 +20,29 @@ function resetSliders(index) {
 
 // This function is used to show the product image
 function showProduct(index) {
-    if (index == 1) {
-        $('#owl-carousel-basic').trigger('prev.owl.carousel');
-        document.getElementById('owl-carousel-basic').getElementsByClassName("picker-container")[0].style.display = "flex";
-    } else {
-        $('#owl-carousel-basic-' + index).trigger('prev.owl.carousel');
-        document.getElementById('owl-carousel-basic-' + index).getElementsByClassName("picker-container")[0].style.display = "flex";
-    }
+    document.querySelector('.item-img-container-' + index).getElementsByClassName("model-img")[0].style.display = "none";
+    document.querySelector('.item-img-container-' + index).getElementsByClassName("product-img")[0].style.display = "flex";
+    document.querySelector('.item-img-container-' + index).getElementsByClassName("picker-container")[0].style.display = "flex";
+
     sliderStatus[index-1] = true;
     resetSliders(index-1);
 }
 
 // This function is used to show the model image
 function showModel(index) {
-    if (index == 1) {
-        $('#owl-carousel-basic').trigger('next.owl.carousel');
-        document.getElementById('owl-carousel-basic').getElementsByClassName("picker-container")[0].style.display = "none";
-    } else {
-        $('#owl-carousel-basic-' + index).trigger('next.owl.carousel');
-        document.getElementById('owl-carousel-basic-' + index).getElementsByClassName("picker-container")[0].style.display = "none";
-    }
+    document.querySelector('.item-img-container-' + index).getElementsByClassName("product-img")[0].style.display = "none";
+    document.querySelector('.item-img-container-' + index).getElementsByClassName("model-img")[0].style.display = "flex";
+    document.querySelector('.item-img-container-' + index).getElementsByClassName("picker-container")[0].style.display = "none";
+
     sliderStatus[index-1] = false;
     resetSliders(index-1);
+}
+
+for (var i = 1; i <= 10; i++) {
+    var element = document.getElementById('recommendBtn' + i)
+    if (typeof(element) != 'undefined' && element != null) {
+        document.querySelector('.item-img-container-' + i).getElementsByClassName("picker-container")[0].style.setProperty('bottom', 'calc(3.25rem + 15px)');
+    }
 }
 
 // This function is used to change the page

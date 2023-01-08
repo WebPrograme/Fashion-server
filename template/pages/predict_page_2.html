@@ -204,6 +204,17 @@
     <div class="container-fluid page-body-wrapper">
         <div class="main-panel">
             <div class="content-wrapper">
+                <!-- Top Bar -->
+                <div class="top-bar-container">
+                    <div class="top-bar">
+                        <div class="card">
+                            <div class="card-body">
+                                <a href="/" type="submit" class="btn btn-lg btn-primary battle__card__submit__btn">RECHOOSE</a>
+                                <a data-bs-toggle="modal" data-bs-target="#wishBackdrop" class="btn btn-lg upload-btn btn-secondary battle__card__submit__btn wish-btn" target="_blank"><i class="fa-solid fa-heart wish-btn-icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="logo-header logo-black">
                     <img class="logo-header-img" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
                 </div>
@@ -238,28 +249,15 @@
                                             <h4 class="card-title">{{ product_number_1 }}</h4>
                                             <h4 class="text-muted mb-1">{{ product_store_1 }}</h4>
                                         </div>
-                                        <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel owl-loaded owl-drag"
-                                            id="owl-carousel-basic">
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="showProduct(1)">
-                                                        <div class="item">
-                                                            {% if product_store_1  == 'NONE' %}
-                                                                <img src="{{ url_for('static', filename=product_model_img_1) }}" alt="No image is available">
-                                                            {% else %}
-                                                                <img src="{{ product_model_img_1 }}" alt="No image is available">
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="owl-item" onmouseout="showModel(1)">
-                                                        <div class="item">
-                                                            <img src="{{ product_img_1 }}" alt="No image is available">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="picker-container">
-                                                    <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_1 }} {{ product_number_1 }} {{ product_link_1 }} {{ product_img_1 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
-                                                </div>
+                                        <div class="item-img-container-1">
+                                            <div onmouseover="showProduct(1)">
+                                                <img class="model-img" src="{{ product_model_img_1 }}" alt="No image is available">
+                                            </div>
+                                            <div onmouseout="showModel(1)">
+                                                <img class="product-img " src="{{ product_img_1 }}" alt="No image is available">
+                                            </div>
+                                            <div class="picker-container">
+                                                <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_1 }} {{ product_number_1 }} {{ product_link_1 }} {{ product_img_1 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
                                             </div>
                                         </div>
                                         {% if recommend_avaible_1 %}
@@ -298,28 +296,15 @@
                                             <h4 class="card-title">{{ product_number_3 }}</h4>
                                             <h4 class="text-muted mb-1">{{ product_store_3 }}</h4>
                                         </div>
-                                        <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel owl-loaded owl-drag"
-                                            id="owl-carousel-basic-3">
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="showProduct(3)">
-                                                        <div class="item">
-                                                            {% if product_store_3  == 'NONE' %}
-                                                                <img src="{{ url_for('static', filename=product_model_img_3) }}" alt="No image is available">
-                                                            {% else %}
-                                                                <img src="{{ product_model_img_3 }}" alt="No image is available">
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="owl-item" onmouseout="showModel(3)">
-                                                        <div class="item">
-                                                            <img src="{{ product_img_3 }}" alt="No image is available">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="picker-container">
-                                                    <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_3 }} {{ product_number_3 }} {{ product_link_3 }} {{ product_img_3 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
-                                                </div>
+                                        <div class="item-img-container-3">
+                                            <div onmouseover="showProduct(3)">
+                                                <img class="model-img" src="{{ product_model_img_3 }}" alt="No image is available">
+                                            </div>
+                                            <div onmouseout="showModel(3)">
+                                                <img class="product-img " src="{{ product_img_3 }}" alt="No image is available">
+                                            </div>
+                                            <div class="picker-container">
+                                                <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_3 }} {{ product_number_3 }} {{ product_link_3 }} {{ product_img_3 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
                                             </div>
                                         </div>
                                         {% if recommend_avaible_3 %}
@@ -358,28 +343,15 @@
                                             <h4 class="card-title">{{ product_number_5 }}</h4>
                                             <h4 class="text-muted mb-1">{{ product_store_5 }}</h4>
                                         </div>
-                                        <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel owl-loaded owl-drag"
-                                            id="owl-carousel-basic-5">
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="showProduct(5)">
-                                                        <div class="item">
-                                                            {% if product_store_5  == 'NONE' %}
-                                                                <img src="{{ url_for('static', filename=product_model_img_5) }}" alt="No image is available">
-                                                            {% else %}
-                                                                <img src="{{ product_model_img_5 }}" alt="No image is available">
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="owl-item" onmouseout="showModel(5)">
-                                                        <div class="item">
-                                                            <img src="{{ product_img_5 }}" alt="No image is available">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="picker-container">
-                                                    <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_5 }} {{ product_number_5 }} {{ product_link_5 }} {{ product_img_5 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
-                                                </div>
+                                        <div class="item-img-container-5">
+                                            <div onmouseover="showProduct(5)">
+                                                <img class="model-img" src="{{ product_model_img_5 }}" alt="No image is available">
+                                            </div>
+                                            <div onmouseout="showModel(5)">
+                                                <img class="product-img " src="{{ product_img_5 }}" alt="No image is available">
+                                            </div>
+                                            <div class="picker-container">
+                                                <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_5 }} {{ product_number_5 }} {{ product_link_5 }} {{ product_img_5 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
                                             </div>
                                         </div>
                                         {% if recommend_avaible_5 %}
@@ -418,28 +390,15 @@
                                             <h4 class="card-title">{{ product_number_7 }}</h4>
                                             <h4 class="text-muted mb-1">{{ product_store_7 }}</h4>
                                         </div>
-                                        <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel owl-loaded owl-drag"
-                                            id="owl-carousel-basic-7">
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="showProduct(7)">
-                                                        <div class="item">
-                                                            {% if product_store_7  == 'NONE' %}
-                                                                <img src="{{ url_for('static', filename=product_model_img_7) }}" alt="No image is available">
-                                                            {% else %}
-                                                                <img src="{{ product_model_img_7 }}" alt="No image is available">
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="owl-item" onmouseout="showModel(7)">
-                                                        <div class="item">
-                                                            <img src="{{ product_img_7 }}" alt="No image is available">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="picker-container">
-                                                    <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_7 }} {{ product_number_7 }} {{ product_link_7 }} {{ product_img_7 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
-                                                </div>
+                                        <div class="item-img-container-7">
+                                            <div onmouseover="showProduct(7)">
+                                                <img class="model-img" src="{{ product_model_img_7 }}" alt="No image is available">
+                                            </div>
+                                            <div onmouseout="showModel(7)">
+                                                <img class="product-img " src="{{ product_img_7 }}" alt="No image is available">
+                                            </div>
+                                            <div class="picker-container">
+                                                <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_7 }} {{ product_number_7 }} {{ product_link_7 }} {{ product_img_7 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
                                             </div>
                                         </div>
                                         {% if recommend_avaible_7 %}
@@ -478,28 +437,15 @@
                                             <h4 class="card-title">{{ product_number_9 }}</h4>
                                             <h4 class="text-muted mb-1">{{ product_store_9 }}</h4>
                                         </div>
-                                        <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel owl-loaded owl-drag"
-                                            id="owl-carousel-basic-9">
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="showProduct(9)">
-                                                        <div class="item">
-                                                            {% if product_store_9  == 'NONE' %}
-                                                                <img src="{{ url_for('static', filename=product_model_img_9) }}" alt="No image is available">
-                                                            {% else %}
-                                                                <img src="{{ product_model_img_9 }}" alt="No image is available">
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="owl-item" onmouseout="showModel(9)">
-                                                        <div class="item">
-                                                            <img src="{{ product_img_9 }}" alt="No image is available">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="picker-container">
-                                                    <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_9 }} {{ product_number_9 }} {{ product_link_9 }} {{ product_img_9 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
-                                                </div>
+                                        <div class="item-img-container-9">
+                                            <div onmouseover="showProduct(9)">
+                                                <img class="model-img" src="{{ product_model_img_9 }}" alt="No image is available">
+                                            </div>
+                                            <div onmouseout="showModel(9)">
+                                                <img class="product-img " src="{{ product_img_9 }}" alt="No image is available">
+                                            </div>
+                                            <div class="picker-container">
+                                                <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_9 }} {{ product_number_9 }} {{ product_link_9 }} {{ product_img_9 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
                                             </div>
                                         </div>
                                         {% if recommend_avaible_9 %}
@@ -541,28 +487,15 @@
                                             <h4 class="card-title">{{ product_number_2 }}</h4>
                                             <h4 class="text-muted mb-1">{{ product_store_2 }}</h4>
                                         </div>
-                                        <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel owl-loaded owl-drag"
-                                            id="owl-carousel-basic-2">
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="showProduct(2)">
-                                                        <div class="item">
-                                                            {% if product_store_2  == 'NONE' %}
-                                                                <img src="{{ url_for('static', filename=product_model_img_2) }}" alt="No image is available">
-                                                            {% else %}
-                                                                <img src="{{ product_model_img_2 }}" alt="No image is available">
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="owl-item" onmouseout="showModel(2)">
-                                                        <div class="item">
-                                                            <img src="{{ product_img_2 }}" alt="No image is available">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="picker-container">
-                                                    <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_2 }} {{ product_number_2 }} {{ product_link_2 }} {{ product_img_2 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
-                                                </div>
+                                        <div class="item-img-container-2">
+                                            <div onmouseover="showProduct(2)">
+                                                <img class="model-img" src="{{ product_model_img_2 }}" alt="No image is available">
+                                            </div>
+                                            <div onmouseout="showModel(2)">
+                                                <img class="product-img " src="{{ product_img_2 }}" alt="No image is available">
+                                            </div>
+                                            <div class="picker-container">
+                                                <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_2 }} {{ product_number_2 }} {{ product_link_2 }} {{ product_img_2 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
                                             </div>
                                         </div>
                                         {% if recommend_avaible_2 %}
@@ -601,28 +534,15 @@
                                             <h4 class="card-title">{{ product_number_4 }}</h4>
                                             <h4 class="text-muted mb-1">{{ product_store_4 }}</h4>
                                         </div>
-                                        <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel owl-loaded owl-drag"
-                                            id="owl-carousel-basic-4">
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="showProduct(4)">
-                                                        <div class="item">
-                                                            {% if product_store_4  == 'NONE' %}
-                                                                <img src="{{ url_for('static', filename=product_model_img_4) }}" alt="No image is available">
-                                                            {% else %}
-                                                                <img src="{{ product_model_img_4 }}" alt="No image is available">
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="owl-item" onmouseout="showModel(4)">
-                                                        <div class="item">
-                                                            <img src="{{ product_img_4 }}" alt="No image is available">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="picker-container">
-                                                    <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_4 }} {{ product_number_4 }} {{ product_link_4 }} {{ product_img_4 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
-                                                </div>
+                                        <div class="item-img-container-4">
+                                            <div onmouseover="showProduct(4)">
+                                                <img class="model-img" src="{{ product_model_img_4 }}" alt="No image is available">
+                                            </div>
+                                            <div onmouseout="showModel(4)">
+                                                <img class="product-img " src="{{ product_img_4 }}" alt="No image is available">
+                                            </div>
+                                            <div class="picker-container">
+                                                <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_4 }} {{ product_number_4 }} {{ product_link_4 }} {{ product_img_4 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
                                             </div>
                                         </div>
                                         {% if recommend_avaible_4 %}
@@ -661,28 +581,15 @@
                                             <h4 class="card-title">{{ product_number_6 }}</h4>
                                             <h4 class="text-muted mb-1">{{ product_store_6 }}</h4>
                                         </div>
-                                        <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel owl-loaded owl-drag"
-                                            id="owl-carousel-basic-6">
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="showProduct(6)">
-                                                        <div class="item">
-                                                            {% if product_store_6  == 'NONE' %}
-                                                                <img src="{{ url_for('static', filename=product_model_img_6) }}" alt="No image is available">
-                                                            {% else %}
-                                                                <img src="{{ product_model_img_6 }}" alt="No image is available">
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="owl-item" onmouseout="showModel(6)">
-                                                        <div class="item">
-                                                            <img src="{{ product_img_6 }}" alt="No image is available">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="picker-container">
-                                                    <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_6 }} {{ product_number_6 }} {{ product_link_6 }} {{ product_img_6 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
-                                                </div>
+                                        <div class="item-img-container-6">
+                                            <div onmouseover="showProduct(6)">
+                                                <img class="model-img" src="{{ product_model_img_6 }}" alt="No image is available">
+                                            </div>
+                                            <div onmouseout="showModel(6)">
+                                                <img class="product-img " src="{{ product_img_6 }}" alt="No image is available">
+                                            </div>
+                                            <div class="picker-container">
+                                                <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_6 }} {{ product_number_6 }} {{ product_link_6 }} {{ product_img_6 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
                                             </div>
                                         </div>
                                         {% if recommend_avaible_6 %}
@@ -721,28 +628,15 @@
                                             <h4 class="card-title">{{ product_number_8 }}</h4>
                                             <h4 class="text-muted mb-1">{{ product_store_8 }}</h4>
                                         </div>
-                                        <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel owl-loaded owl-drag"
-                                            id="owl-carousel-basic-8">
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="showProduct(8)">
-                                                        <div class="item">
-                                                            {% if product_store_8  == 'NONE' %}
-                                                                <img src="{{ url_for('static', filename=product_model_img_8) }}" alt="No image is available">
-                                                            {% else %}
-                                                                <img src="{{ product_model_img_8 }}" alt="No image is available">
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="owl-item" onmouseout="showModel(8)">
-                                                        <div class="item">
-                                                            <img src="{{ product_img_8 }}" alt="No image is available">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="picker-container">
-                                                    <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_8 }} {{ product_number_8 }} {{ product_link_8 }} {{ product_img_8 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
-                                                </div>
+                                        <div class="item-img-container-8">
+                                            <div onmouseover="showProduct(8)">
+                                                <img class="model-img" src="{{ product_model_img_8 }}" alt="No image is available">
+                                            </div>
+                                            <div onmouseout="showModel(8)">
+                                                <img class="product-img " src="{{ product_img_8 }}" alt="No image is available">
+                                            </div>
+                                            <div class="picker-container">
+                                                <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_8 }} {{ product_number_8 }} {{ product_link_8 }} {{ product_img_8 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
                                             </div>
                                         </div>
                                         {% if recommend_avaible_8 %}
@@ -781,28 +675,15 @@
                                             <h4 class="card-title">{{ product_number_10 }}</h4>
                                             <h4 class="text-muted mb-1">{{ product_store_10 }}</h4>
                                         </div>
-                                        <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel owl-loaded owl-drag"
-                                            id="owl-carousel-basic-10">
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage result-owl-stage">
-                                                    <div class="owl-item" onmouseover="showProduct(10)">
-                                                        <div class="item">
-                                                            {% if product_store_10  == 'NONE' %}
-                                                                <img src="{{ url_for('static', filename=product_model_img_10) }}" alt="No image is available">
-                                                            {% else %}
-                                                                <img src="{{ product_model_img_10 }}" alt="No image is available">
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="owl-item" onmouseout="showModel(10)">
-                                                        <div class="item">
-                                                            <img src="{{ product_img_10 }}" alt="No image is available">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="picker-container">
-                                                    <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_10 }} {{ product_number_10 }} {{ product_link_10 }} {{ product_img_10 }}"class="btn-picker"><i class="fa-regular fa-heart"></i></button>
-                                                </div>
+                                        <div class="item-img-container-10">
+                                            <div onmouseover="showProduct(10)">
+                                                <img class="model-img" src="{{ product_model_img_10 }}" alt="No image is available">
+                                            </div>
+                                            <div onmouseout="showModel(10)">
+                                                <img class="product-img " src="{{ product_img_10 }}" alt="No image is available">
+                                            </div>
+                                            <div class="picker-container">
+                                                <button title="Add to your favorites" onclick="wish(event, this.value)" value="{{ product_store_10 }} {{ product_number_10 }} {{ product_link_10 }} {{ product_img_10 }}" class="btn-picker"><i class="fa-regular fa-heart"></i></button>
                                             </div>
                                         </div>
                                         {% if recommend_avaible_10 %}

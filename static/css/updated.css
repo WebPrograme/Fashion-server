@@ -1063,10 +1063,18 @@ option:disabled {
     justify-content: center;
     vertical-align: middle;
     position: absolute;
-    bottom: .5rem;
-    right: .5rem;
     z-index: 9;
     color: #000;
+}
+
+.results-large .picker-container {
+    bottom: 2.25rem;
+    right: 2.0625rem;
+}
+
+.results-small .picker-container {
+    bottom: .5rem;
+    right: .5rem;
 }
 
 .btn-picker {    
@@ -1094,6 +1102,14 @@ option:disabled {
 }
 
 #hidden-pick-form {
+    display: none;
+}
+
+.model-img, .product-img {
+    border-radius: 4px;
+}
+
+.results-large .product-img {
     display: none;
 }
 
