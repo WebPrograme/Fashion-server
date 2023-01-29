@@ -47,7 +47,7 @@ function showWishItems(source) {
             item.classList.add('grid-margin', 'col-md-6', 'col-xl-6', 'wish-item-card');
             item.title = 'Click to use this image';
             item.innerHTML = `
-            <a ` + data[i][2] + ` target="_blank">
+            <a ` + data[data.length - 1][2] + ` target="_blank">
                 <div class="card">
                     <div class="card-body">
                         <img src="` + data[data.length - 1][3] + `" alt="No image is available" class="forselected-img wish-card-img"">
